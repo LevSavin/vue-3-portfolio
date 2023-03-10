@@ -1,0 +1,43 @@
+<template>
+  <iconsWrapper :width="width" :height="height" :viewBox="viewBox">
+    <g id="Hot" transform="translate(0 0.504)">
+      <rect id="bounds" width="18" height="18" fill="none" />
+      <path
+        id="Icon"
+        d="M-15847-9366a7.1,7.1,0,0,1-7-7.179,9.7,9.7,0,0,1,1.926-5.894.862.862,0,0,1,.585-.366.584.584,0,0,1,.08,0,.767.767,0,0,1,.489.176.84.84,0,0,1,.295.561,4.136,4.136,0,0,0,.652,1.99l.219.338-.032-.4a7.2,7.2,0,0,1,3.8-7.135.776.776,0,0,1,.521-.063.813.813,0,0,1,.593.971,3.724,3.724,0,0,0,1.266,4.206c.02.017.075.056.155.111.318.235,1.059.776,1.377,1.047a5.543,5.543,0,0,1,2.073,4.465A7.1,7.1,0,0,1-15847-9366Zm-4.779-10.346c-.032.079-.063.154-.1.234a6.638,6.638,0,0,0-.549,2.98,5.486,5.486,0,0,0,5.424,5.535h.071a5.24,5.24,0,0,0,3.736-1.567,5.552,5.552,0,0,0,1.616-3.991,4.006,4.006,0,0,0-1.521-3.228c-.171-.159-.6-.485-.986-.772-.259-.19-.5-.374-.577-.441a5.374,5.374,0,0,1-1.958-3.692l-.012-.22-.155.151c-.485.478-2.01,2.336-1.21,6.2a.407.407,0,0,1,.021.163.81.81,0,0,1-.8.8,3.419,3.419,0,0,1-2.821-2.153l-.1-.2Z"
+        transform="translate(15856 9384)"
+        :fill="iconColor"
+        stroke="rgba(0,0,0,0)"
+        stroke-width="1"
+      />
+    </g>
+  </iconsWrapper>
+</template>
+
+<script>
+import iconsWrapper from "@/components/icons/iconsWrapper.vue";
+export default {
+  name: "iconHot",
+  components: {
+    iconsWrapper,
+  },
+  props: {
+    iconColor: {
+      type: String,
+      default: "currentColor",
+    },
+    width: {
+      type: [Number, String],
+      default: 18,
+    },
+    height: {
+      type: [Number, String],
+      default: 18,
+    },
+    viewBox: {
+      type: String,
+      default: "0 0 18 18",
+    },
+  },
+};
+</script>

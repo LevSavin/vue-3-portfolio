@@ -1,0 +1,51 @@
+.form {
+  &__title {
+    margin-bottom: 30px;
+  }
+}
+.form-page {
+  max-width: 1352px;
+  margin: 0 auto;
+  &__hero {
+    margin-bottom: 30px;
+  }
+  &__wrapper {
+    max-width: 728px;
+  }
+  &__title {
+    margin-top: 0px;
+    margin-bottom: 28px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  &__field {
+    width: 312px !important;
+  }
+  &__section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    &--hero {
+      margin-bottom: 30px;
+    }
+  }
+  &__text-section {
+    max-width: 676px;
+  }
+  &__block {
+    width: 312px;
+  }
+  &__block-wrapper {
+    display: flex;
+  }
+  &__submit {
+    display: flex;
+    justify-content: flex-end;
+    &-btn {
+      margin-left: 16px;
+    }
+  }
+  &__select {
+    width: 100% !important;
+  }
+}
