@@ -32,11 +32,11 @@ export default defineComponent({
     );
 
     const getSchema = () => {
-      const url = `/server/docs.json`;
+      const url = `/server/schema.json`;
       axios
         .get(url)
         .then(({ data }) => {
-          store.dispatch("docs/setSchemas", data.components.schemas);
+          store.dispatch("docs/setSchemas", data.schemas);
         })
         .catch((error) => {
           showError(error);

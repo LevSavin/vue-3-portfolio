@@ -1,1 +1,0 @@
-{"name":{"maxLength":255,"type":"string","required":true},"maxWeights":{"minimum":1000,"maximum":100000,"type":"integer","required":true},"maxPallets":{"minimum":2,"maximum":100,"type":"number","nullable":true,"required":true},"height":{"minimum":1000,"maximum":100000,"type":"number","nullable":true},"volume":{"minimum":1000,"maximum":100000,"type":"number","nullable":true}}

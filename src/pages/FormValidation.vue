@@ -1,6 +1,16 @@
 <template>
   <div class="form-page">
-    <h1 class="form-page__hero">Добавить тип транспорта</h1>
+    <p class="form-page__description">
+      {{ $t("pages.validation_1") }}
+    </p>
+    <p class="form-page__description">
+      {{ $t("pages.validation_2") }}
+    </p>
+    <p class="form-page__description">
+      {{ $t("pages.validation_3") }}
+    </p>
+    <el-divider class="errors__divider"></el-divider>
+    <h1 class="form-page__hero">{{ $t("common.form_dynamic_validation") }}</h1>
 
     <el-form
       ref="formRef"
@@ -11,48 +21,50 @@
       size="large"
     >
       <div class="form-page__wrapper">
-        <div class="form-page__section">
-          <div
-            class="form-page__block"
-            v-for="(field, index) in formFields"
-            :key="index"
-          >
-            <el-form-item
-              :ref="field + 'Ref'"
-              :prop="field"
-              :label="$t(`labels.table.${field}`)"
+        <div class="form-page__section-wrapper">
+          <div class="form-page__section">
+            <div
+              class="form-page__block"
+              v-for="(field, index) in formFields"
+              :key="index"
             >
-              <el-input
-                v-model="form.data[field]"
-                :placeholder="$t(`labels.table.${field}`)"
-                @input="onClearErrorField(field)"
-              />
+              <el-form-item
+                :ref="field + 'Ref'"
+                :prop="field"
+                :label="$t(`labels.table.${field}`)"
+              >
+                <el-input
+                  v-model="form.data[field]"
+                  :placeholder="$t(`labels.table.${field}`)"
+                  @input="onClearErrorField(field)"
+                />
+              </el-form-item>
+            </div>
+          </div>
+
+          <el-form-item prop="submit">
+            <el-divider class="errors__divider"></el-divider>
+          </el-form-item>
+          <div class="form-page__submit">
+            <el-form-item>
+              <div>
+                <el-button class="btn-plain" size="large" @click="resetForm">
+                  {{ $t("btns.cancel_changes") }}
+                </el-button>
+              </div>
+              <div class="form-page__submit-btn">
+                <el-button
+                  :disabled="isSubmitDisabled"
+                  class="btn-primary"
+                  size="large"
+                  @click="onSubmitForm"
+                >
+                  {{ $t("btns.save_changes") }}
+                </el-button>
+              </div>
             </el-form-item>
           </div>
         </div>
-      </div>
-
-      <el-form-item prop="submit">
-        <el-divider class="errors__divider"></el-divider>
-      </el-form-item>
-      <div class="form-page__submit">
-        <el-form-item>
-          <div>
-            <el-button class="btn-plain" size="large" @click="resetForm">
-              {{ $t("btns.cancel_changes") }}
-            </el-button>
-          </div>
-          <div class="form-page__submit-btn">
-            <el-button
-              :disabled="isSubmitDisabled"
-              class="btn-primary"
-              size="large"
-              @click="onSubmitForm"
-            >
-              {{ $t("btns.save_changes") }}
-            </el-button>
-          </div>
-        </el-form-item>
       </div>
     </el-form>
   </div>
@@ -98,12 +110,12 @@ export default defineComponent({
       data: dataConst(),
       defaultData: dataConst(),
       apiUrl: "/api/vehicle_types",
-      schema: "VehicleType-VehicleType.write",
+      schema: "form-validation",
       errors: errorsConst,
     });
 
     const currentSchema = computed(() => {
-      return schemas.value[form.schema]?.properties;
+      return schemas.value[form.schema];
     });
 
     const requiredFields = computed(() => {
@@ -218,6 +230,7 @@ export default defineComponent({
       volumeRef,
       currentSchema,
       requiredFields,
+      schemas,
     };
   },
 });

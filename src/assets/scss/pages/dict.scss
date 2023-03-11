@@ -6,11 +6,24 @@
 .form-page {
   max-width: 992px;
   margin: 0 auto;
+  &__description {
+    font-size: 14px;
+    line-height: 20px;
+  }
   &__hero {
     margin-bottom: 30px;
   }
   &__wrapper {
-    max-width: 728px;
+    max-width: 800px;
+  }
+  &__section-wrapper {
+    padding-top: 24px;
+    padding-bottom: 10px;
+    padding-left: 68px;
+    padding-right: 68px;
+    margin-bottom: 16px;
+    border: 1px solid $border-color;
+    border-radius: 5px;
   }
   &__title {
     margin-top: 0px;
@@ -20,11 +33,12 @@
     line-height: 24px;
   }
   &__field {
-    width: 312px !important;
+    width: 100% !important;
   }
   &__section {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
     &--hero {
       margin-bottom: 30px;
     }
@@ -33,7 +47,7 @@
     max-width: 676px;
   }
   &__block {
-    width: 312px;
+    width: 100%;
   }
   &__block-wrapper {
     display: flex;
