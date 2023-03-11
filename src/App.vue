@@ -32,7 +32,7 @@ export default defineComponent({
     );
 
     const getSchema = () => {
-      const url = `/api/docs.json`;
+      const url = `/server/docs.json`;
       axios
         .get(url)
         .then(({ data }) => {

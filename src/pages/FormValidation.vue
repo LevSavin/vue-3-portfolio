@@ -1,6 +1,6 @@
 <template>
   <div class="form-page">
-    <h1 class="form-page__hero">Редактировать тип транспортировки</h1>
+    <h1 class="form-page__hero">Добавить тип транспорта</h1>
 
     <el-form
       ref="formRef"
@@ -60,7 +60,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, computed, inject, watch } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import type { FormInstance, FormRules } from "element-plus";
 import { useI18n } from "vue-i18n";
@@ -68,7 +67,6 @@ import { useForm } from "@/composables/useForm";
 import { errorsObjectType } from "@/types/common";
 import { errorsInterceptorObject } from "@/utils/errorsInterceptorObject";
 import { errorsConst } from "@/constants/common";
-import { showError } from "@/utils/errorsInterceptor";
 
 type formType = {
   data: any;
@@ -80,26 +78,27 @@ type formType = {
 
 const dataConst = () => ({
   name: null,
-  description: null,
+  maxWeights: null,
+  maxPallets: null,
+  height: null,
+  volume: null,
 });
 
 export default defineComponent({
-  name: "TransportationTypeEdit",
+  name: "FormValidation",
   components: {},
   setup() {
     const axios: any = inject("axios");
-    const { t } = useI18n({});
     const formRef = ref<FormInstance>();
-    const route = useRoute();
-    const id = route.params.id;
+    const { t } = useI18n({});
     const store = useStore();
-    const schemas = computed(() => store.getters["docs/schemas"]);
+    const schemas = computed((): string => store.getters["docs/schemas"]);
 
     const form: formType = reactive({
       data: dataConst(),
       defaultData: dataConst(),
-      apiUrl: "/api/transportation_types/",
-      schema: "TransportationType",
+      apiUrl: "/api/vehicle_types",
+      schema: "VehicleType-VehicleType.write",
       errors: errorsConst,
     });
 
@@ -123,22 +122,26 @@ export default defineComponent({
       onPrepareTypesData,
     } = useForm(form, formRef, sendData, currentSchema);
 
-    const getData = () => {
-      const url = `${form.apiUrl}${id}`;
+    function sendData() {
+      if (isSubmitDisabled.value) {
+        return;
+      }
+      const url = `${form.apiUrl}`;
+      const params = onPrepareTypesData(onGetDirtyData(), currentSchema.value);
       axios
-        .get(url)
-        .then(({ data }) => {
-          for (const key in data) {
-            form.data[key] = JSON.parse(JSON.stringify(data[key]));
-            form.defaultData[key] = JSON.parse(JSON.stringify(data[key]));
-          }
-          onValidate();
+        .post(url, params)
+        .then(() => {
+          window.ElMessage({
+            showClose: true,
+            message: t("common.messages.succcess"),
+            type: "success",
+          });
         })
         .catch((error) => {
-          showError(error);
+          form.errors = errorsInterceptorObject(error);
+          onValidate();
         });
-    };
-    getData();
+    }
 
     let rules = reactive<FormRules>({});
 
@@ -162,28 +165,6 @@ export default defineComponent({
       return fields;
     });
 
-    function sendData() {
-      if (isSubmitDisabled.value) {
-        return;
-      }
-      const url = `${form.apiUrl}${id}`;
-      const params = onPrepareTypesData(onGetDirtyData(), currentSchema.value);
-      axios
-        .patch(url, params)
-        .then(() => {
-          form.defaultData = JSON.parse(JSON.stringify(form.data));
-          window.ElMessage({
-            showClose: true,
-            message: t("common.messages.succcess"),
-            type: "success",
-          });
-        })
-        .catch((error) => {
-          form.errors = errorsInterceptorObject(error);
-          onValidate();
-        });
-    }
-
     const resetForm = () => {
       form.data = JSON.parse(JSON.stringify(form.defaultData));
     };
@@ -203,12 +184,18 @@ export default defineComponent({
     };
 
     const nameRef: any = ref(null);
-    const descriptionRef: any = ref(null);
+    const maxWeightsRef: any = ref(null);
+    const maxPalletsRef: any = ref(null);
+    const heightRef: any = ref(null);
+    const volumeRef: any = ref(null);
 
     const isSubmitDisabled = computed(() => {
       if (
         isFieldValid(nameRef.value?.[0]?.validateState, "name") &&
-        isFieldValid(descriptionRef.value?.[0]?.validateState, "description")
+        isFieldValid(maxWeightsRef.value?.[0]?.validateState, "maxWeights") &&
+        isFieldValid(maxPalletsRef.value?.[0]?.validateState, "maxPallets") &&
+        isFieldValid(heightRef.value?.[0]?.validateState, "height") &&
+        isFieldValid(volumeRef.value?.[0]?.validateState, "volume")
       ) {
         return false;
       }
@@ -221,13 +208,14 @@ export default defineComponent({
       formRef,
       form,
       rules,
-      resetForm,
       isSubmitDisabled,
       formFields,
+      resetForm,
       nameRef,
-      descriptionRef,
-      id,
-      schemas,
+      maxWeightsRef,
+      maxPalletsRef,
+      heightRef,
+      volumeRef,
       currentSchema,
       requiredFields,
     };

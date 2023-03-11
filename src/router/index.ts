@@ -11,8 +11,8 @@ const router = createRouter({
     },
     {
       path: "/dynamic-validation",
-      name: "HomePage",
-      component: () => import("@/pages/HomePage.vue"),
+      name: "FormValidation",
+      component: () => import("@/pages/FormValidation.vue"),
     },
   ],
 });

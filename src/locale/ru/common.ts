@@ -4,6 +4,7 @@ export default {
   no_data: "Нет данных",
   table_columns_view: "Отображение колонок таблицы",
   lang: "Язык",
+  form_dynamic_validation: "Динамическая валидация формы",
 
   pages: {
     notFound: "Страница не найдена",
