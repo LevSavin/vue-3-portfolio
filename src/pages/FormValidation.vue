@@ -115,7 +115,7 @@ export default defineComponent({
     });
 
     const currentSchema = computed(() => {
-      return schemas.value[form.schema];
+      return schemas.value[form.schema]?.properties;
     });
 
     const requiredFields = computed(() => {
