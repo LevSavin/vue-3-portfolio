@@ -1,9 +1,16 @@
 <template>
   <div class="header__wrapper">
     <langDropdown></langDropdown>
+    <div
+      v-if="isMobile && !showAside"
+      class="header__burger"
+      @click="setIsShowAside"
+    >
+      <iconBurger class="link rotate_180" width="18" :height="18"></iconBurger>
+    </div>
 
     <div class="header__menu">
-      <el-dropdown @command="dropdownAction" class="dropdown">
+      <el-dropdown class="dropdown">
         <span class="el-dropdown-link link">
           <iconProfile
             class="dropdown__icon"
@@ -20,13 +27,27 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="counterpartyProfile">
-              <iconCompany></iconCompany>
-              <span class="header__dropdown-text">Моя компания</span>
+            <el-dropdown-item>
+              <a class="link" target="_blank" href="https://t.me/skifsw">
+                <iconTelegram></iconTelegram>
+                <span class="header__dropdown-text">Telegram</span>
+              </a>
             </el-dropdown-item>
-            <el-dropdown-item command="userProfile">
-              <iconUserSettings></iconUserSettings>
-              <span class="header__dropdown-text">Мой профиль</span>
+            <el-dropdown-item>
+              <a class="link" href="mailto:lev-savin-89@mail.ru">
+                <iconMail></iconMail>
+                <span class="header__dropdown-text">lev-savin-89@mail.ru</span>
+              </a>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <a
+                class="link"
+                target="_blank"
+                href="https://github.com/LevSavin/vue-3-portfolio"
+              >
+                <iconGitHub></iconGitHub>
+                <span class="header__dropdown-text">GitHub</span>
+              </a>
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -40,47 +61,43 @@ import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 import { ArrowDown } from "@element-plus/icons-vue";
 import iconProfile from "@/components/icons/iconProfile.vue";
-import iconUserSettings from "@/components/icons/iconUserSettings.vue";
-import iconCompany from "@/components/icons/iconCompany.vue";
 import langDropdown from "@/components/langDropdown.vue";
+import iconMail from "@/components/icons/iconMail.vue";
+import iconTelegram from "@/components/icons/iconTelegram.vue";
+import iconGitHub from "@/components/icons/iconGitHub.vue";
 
 export default defineComponent({
   name: "HeaderComponent",
   components: {
-    iconProfile,
-    ArrowDown,
-    iconUserSettings,
-    iconCompany,
     langDropdown,
+    ArrowDown,
+    iconProfile,
+    iconMail,
+    iconTelegram,
+    iconGitHub,
   },
   setup() {
     const store = useStore();
     const isMobile = computed(
       (): boolean => store.getters["settings/isMobile"]
     );
+    const showAside = computed(
+      (): boolean => store.getters["settings/showAside"]
+    );
+    const isAsideCollapsed = computed(
+      (): boolean => store.getters["settings/isAsideCollapsed"]
+    );
 
-    const editUserProfile = () => {
-      //router.push({ name: "ProfileUser" });
-    };
-
-    const editCounterpartyProfile = () => {
-      //router.push({ name: "Profile" });
-    };
-
-    const dropdownActions = {
-      userProfile: editUserProfile,
-      counterpartyProfile: editCounterpartyProfile,
-    };
-
-    const dropdownAction = (command: string) => {
-      dropdownActions[command]();
+    const setIsShowAside = () => {
+      store.dispatch("settings/setIsAsideCollapsed", false);
+      store.dispatch("settings/setShowAside", !showAside.value);
     };
 
     return {
-      dropdownAction,
-      editUserProfile,
-      editCounterpartyProfile,
       isMobile,
+      isAsideCollapsed,
+      setIsShowAside,
+      showAside,
     };
   },
 });

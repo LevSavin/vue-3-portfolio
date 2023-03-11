@@ -48,6 +48,7 @@ export default defineComponent({
     const media = window.matchMedia("(max-width:576px)");
     const listener = (e) => {
       store.dispatch("settings/setIsMobile", e.matches);
+      store.dispatch("settings/setShowAside", !e.matches);
     };
     listener(media);
     media.addEventListener("change", listener);

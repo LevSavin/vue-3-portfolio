@@ -4,6 +4,7 @@ export default {
   drag_file_2: "выберите файл вручную",
   no_data: "Нет данных",
   table_columns_view: "Отображение колонок таблицы",
+  lang: "Язык",
 
   pages: {
     notFound: "Страница не найдена",
@@ -17,5 +18,9 @@ export default {
     succcess: "Успешно",
     error: "Ошибка",
     link_copied: "Ссылка скопирована",
+  },
+
+  menu: {
+    main_menu: "Главное меню",
   },
 };

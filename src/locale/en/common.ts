@@ -4,6 +4,7 @@ export default {
   drag_file_2: "select file manually",
   no_data: "No data",
   table_columns_view: "Displaying table columns",
+  lang: "Language",
 
   pages: {
     notFound: "Page not found",
@@ -17,5 +18,9 @@ export default {
     succcess: "Successfully",
     error: "Error",
     link_copied: "Link copied",
+  },
+
+  menu: {
+    main_menu: "Main menu",
   },
 };

@@ -6,8 +6,16 @@ export default {
     state.lang = lang;
   },
 
+  SET_IS_ASIDE_COLLAPSED(state: SettingsStateType, isAsideCollapsed: boolean) {
+    state.isAsideCollapsed = isAsideCollapsed;
+  },
+
   SET_IS_MOBILE(state: SettingsStateType, isMobile: boolean) {
     state.isMobile = isMobile;
+  },
+
+  SET_SHOW_ASIDE(state: SettingsStateType, showAside: boolean) {
+    state.showAside = showAside;
   },
 
   RESET(state: SettingsStateType) {
