@@ -20,5 +20,8 @@ export default {
 
   menu: {
     main_menu: "Главное меню",
+    portfolio: "Портфолио",
+    examples_functionality: "Примеры функционала",
+    dynamic_validation: "Динамическая валидация",
   },
 };

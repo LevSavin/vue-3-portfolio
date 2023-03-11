@@ -1,14 +1,5 @@
 <template>
   <div class="header__wrapper">
-    <langDropdown></langDropdown>
-    <div
-      v-if="isMobile && !showAside"
-      class="header__burger"
-      @click="setIsShowAside"
-    >
-      <iconBurger class="link rotate_180" width="18" :height="18"></iconBurger>
-    </div>
-
     <div class="header__menu">
       <el-dropdown class="dropdown">
         <span class="el-dropdown-link link">
@@ -19,9 +10,6 @@
           ></iconProfile>
           <div class="header__hero-name" v-if="!isMobile">
             <p class="header__hero-title">{{ $t("common.my_name") }}</p>
-            <p class="header__hero-text">
-              <span>+7 999 811 46 09</span>
-            </p>
           </div>
           <el-icon class="el-icon--right"><arrow-down /></el-icon>
         </span>
@@ -52,6 +40,21 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+    </div>
+
+    <div>
+      <langDropdown></langDropdown>
+      <div
+        v-if="isMobile && !showAside"
+        class="header__burger"
+        @click="setIsShowAside"
+      >
+        <iconBurger
+          class="link rotate_180"
+          width="18"
+          :height="18"
+        ></iconBurger>
+      </div>
     </div>
   </div>
 </template>

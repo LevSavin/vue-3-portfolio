@@ -23,17 +23,36 @@
           </div>
         </div>
       </div>
+
       <el-menu class="aside__menu" :collapse="isAsideCollapsed" :router="false">
         <el-menu-item index="/" class="aside__menu-item">
           <router-link index="/" class="aside__link" :to="{ path: '/' }">
             <asideItem
               :isCollapse="isAsideCollapsed"
-              icon="iconDashboard"
-              text="Рабочий стол"
+              icon="iconPass"
+              :text="$t('common.menu.portfolio')"
             ></asideItem>
           </router-link>
         </el-menu-item>
+
+        <el-sub-menu index="functional">
+          <template #title>
+            <el-icon><iconForm class="aside__icon"></iconForm></el-icon>
+            <span class="aside_submenu-text">
+              {{ $t("common.menu.examples_functionality") }}
+            </span>
+          </template>
+          <el-menu-item index="/dynamic-validation">
+            <router-link
+              class="aside__link"
+              :to="{ path: '/dynamic-validation' }"
+            >
+              {{ $t("common.menu.dynamic_validation") }}
+            </router-link>
+          </el-menu-item>
+        </el-sub-menu>
       </el-menu>
+
       <div v-if="!isAsideCollapsed">
         <el-divider></el-divider>
         <div class="aside__block">
@@ -76,6 +95,7 @@
 import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 import iconBurger from "@/components/icons/iconBurger.vue";
+import iconForm from "@/components/icons/iconForm.vue";
 import iconPhone from "@/components/icons/iconPhone.vue";
 import iconMail from "@/components/icons/iconMail.vue";
 import iconTelegram from "@/components/icons/iconTelegram.vue";
@@ -86,6 +106,7 @@ export default defineComponent({
   name: "AsideComponent",
   components: {
     iconBurger,
+    iconForm,
     iconPhone,
     iconMail,
     iconTelegram,

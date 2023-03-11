@@ -44,7 +44,7 @@ export default defineComponent({
     const store = useStore();
     const i18n = useI18n();
     const setLang = (lang: string) => {
-      store.dispatch("auth/setLang", lang);
+      store.dispatch("settings/setLang", lang);
       i18n.locale.value = lang;
       document.documentElement.setAttribute("lang", lang);
     };

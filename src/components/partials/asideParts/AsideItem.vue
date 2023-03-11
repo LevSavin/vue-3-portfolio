@@ -14,24 +14,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import iconDashboard from "@/components/icons/iconDashboard.vue";
-import iconTechDock from "@/components/icons/iconTechDock.vue";
-import iconReport from "@/components/icons/iconReport.vue";
-import iconCalc from "@/components/icons/iconCalc.vue";
-import iconPedia from "@/components/icons/iconPedia.vue";
-import iconAdmin from "@/components/icons/iconAdmin.vue";
+import iconPass from "@/components/icons/iconPass.vue";
 import iconBurger from "@/components/icons/iconBurger.vue";
 import iconForm from "@/components/icons/iconForm.vue";
 
 export default defineComponent({
   name: "AsideItem",
   components: {
-    iconDashboard,
-    iconTechDock,
-    iconReport,
-    iconCalc,
-    iconPedia,
-    iconAdmin,
+    iconPass,
     iconBurger,
     iconForm,
   },

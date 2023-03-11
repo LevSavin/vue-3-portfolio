@@ -6,6 +6,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "About",
+      component: () => import("@/pages/About.vue"),
+    },
+    {
+      path: "/dynamic-validation",
       name: "HomePage",
       component: () => import("@/pages/HomePage.vue"),
     },

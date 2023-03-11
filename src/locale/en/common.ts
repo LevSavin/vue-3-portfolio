@@ -20,5 +20,8 @@ export default {
 
   menu: {
     main_menu: "Main menu",
+    portfolio: "Portfolio",
+    examples_functionality: "Examples of functionality",
+    dynamic_validation: "Dynamic validation",
   },
 };
