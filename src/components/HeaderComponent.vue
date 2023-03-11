@@ -1,8 +1,8 @@
 <template>
   <div class="header__wrapper">
     <div class="header__menu">
-      <el-dropdown class="dropdown">
-        <span class="el-dropdown-link link">
+      <div>
+        <router-link class="header__hero" :to="{ path: '/' }">
           <iconProfile
             class="dropdown__icon"
             :width="isMobile ? 18 : 18"
@@ -11,35 +11,8 @@
           <div class="header__hero-name" v-if="!isMobile">
             <p class="header__hero-title">{{ $t("common.my_name") }}</p>
           </div>
-          <el-icon class="el-icon--right"><arrow-down /></el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item>
-              <a class="link" target="_blank" href="https://t.me/skifsw">
-                <iconTelegram></iconTelegram>
-                <span class="header__dropdown-text">Telegram</span>
-              </a>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <a class="link" href="mailto:lev-savin-89@mail.ru">
-                <iconMail></iconMail>
-                <span class="header__dropdown-text">lev-savin-89@mail.ru</span>
-              </a>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <a
-                class="link"
-                target="_blank"
-                href="https://github.com/LevSavin/vue-3-portfolio"
-              >
-                <iconGitHub></iconGitHub>
-                <span class="header__dropdown-text">GitHub</span>
-              </a>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+        </router-link>
+      </div>
     </div>
 
     <div>
@@ -62,22 +35,14 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
-import { ArrowDown } from "@element-plus/icons-vue";
 import iconProfile from "@/components/icons/iconProfile.vue";
 import langDropdown from "@/components/langDropdown.vue";
-import iconMail from "@/components/icons/iconMail.vue";
-import iconTelegram from "@/components/icons/iconTelegram.vue";
-import iconGitHub from "@/components/icons/iconGitHub.vue";
 
 export default defineComponent({
   name: "HeaderComponent",
   components: {
     langDropdown,
-    ArrowDown,
     iconProfile,
-    iconMail,
-    iconTelegram,
-    iconGitHub,
   },
   setup() {
     const store = useStore();
