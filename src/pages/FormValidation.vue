@@ -86,25 +86,21 @@
         <el-form-item prop="submit">
           <el-divider class="errors__divider"></el-divider>
         </el-form-item>
-        <div class="form-page__submit">
-          <el-form-item>
-            <div>
-              <el-button class="btn-plain" size="large" @click="resetForm">
-                {{ $t("btns.cancel_changes") }}
-              </el-button>
-            </div>
-            <div class="form-page__submit-btn">
-              <el-button
-                :disabled="isSubmitDisabled"
-                class="btn-primary"
-                size="large"
-                @click="onSubmitForm"
-              >
-                {{ $t("btns.save_changes") }}
-              </el-button>
-            </div>
-          </el-form-item>
-        </div>
+        <el-form-item>
+          <div class="form-page__submit">
+            <el-button class="btn-plain" size="large" @click="resetForm">
+              {{ $t("btns.cancel_changes") }}
+            </el-button>
+            <el-button
+              :disabled="isSubmitDisabled"
+              class="btn-primary form-page__submit-btn"
+              size="large"
+              @click="onSubmitForm"
+            >
+              {{ $t("btns.save_changes") }}
+            </el-button>
+          </div>
+        </el-form-item>
       </div>
     </el-form>
   </div>

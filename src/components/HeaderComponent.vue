@@ -15,8 +15,7 @@
       </div>
     </div>
 
-    <div>
-      <langDropdown></langDropdown>
+    <div class="header__menu-wrapper">
       <div
         v-if="isMobile && !showAside"
         class="header__burger"
@@ -28,6 +27,7 @@
           :height="18"
         ></iconBurger>
       </div>
+      <langDropdown></langDropdown>
     </div>
   </div>
 </template>
@@ -128,6 +128,9 @@ export default defineComponent({
   &__menu {
     display: flex;
     min-height: 32px;
+    &-wrapper {
+      display: flex;
+    }
   }
   &__dropdown {
     &-text {

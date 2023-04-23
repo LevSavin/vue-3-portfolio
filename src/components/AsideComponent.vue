@@ -92,8 +92,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, watch } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 import iconBurger from "@/components/icons/iconBurger.vue";
 import iconForm from "@/components/icons/iconForm.vue";
 import iconPhone from "@/components/icons/iconPhone.vue";
@@ -114,6 +115,7 @@ export default defineComponent({
     asideItem,
   },
   setup() {
+    const route = useRoute();
     const store = useStore();
     const isMobile = computed(
       (): boolean => store.getters["settings/isMobile"]
@@ -146,6 +148,12 @@ export default defineComponent({
       store.dispatch("settings/setIsAsideCollapsed", false);
       store.dispatch("settings/setShowAside", !showAside.value);
     };
+
+    watch(route, () => {
+      if (isMobile.value) {
+        store.dispatch("settings/setShowAside", false);
+      }
+    });
 
     return {
       isAsideCollapsed,

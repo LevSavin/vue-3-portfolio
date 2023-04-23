@@ -17,13 +17,15 @@
     max-width: 800px;
   }
   &__section-wrapper {
-    padding-top: 24px;
     padding-bottom: 10px;
-    padding-left: 68px;
-    padding-right: 68px;
     margin-bottom: 16px;
-    border: 1px solid $border-color;
     border-radius: 5px;
+    @media(min-width: 992px) {
+      padding-top: 24px;
+      padding-left: 68px;
+      padding-right: 68px;
+      border: 1px solid $border-color;
+    }
   }
   &__title {
     margin-top: 0px;
@@ -37,8 +39,11 @@
   }
   &__section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     column-gap: 30px;
+    @media(min-width: 1100px) {
+      grid-template-columns: 1fr 1fr;
+    }
     &--hero {
       margin-bottom: 30px;
     }
@@ -53,10 +58,23 @@
     display: flex;
   }
   &__submit {
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
-    &-btn {
+    flex-direction: column;
+    @media(min-width: 576px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    @media(min-width: 992px) {
+      justify-content: flex-end;
+    }
+  }
+  &__submit-btn {
+    margin-left: 0px;
+    margin-top: 24px;
+    @media(min-width: 576px) {
       margin-left: 16px;
+      margin-top: 0px;
     }
   }
   &__select {

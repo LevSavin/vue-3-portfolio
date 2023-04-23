@@ -36,7 +36,7 @@ export default defineComponent({
     getSchema();
 
     // отслеживание ширины экрана мобильника и выставление флага
-    const media = window.matchMedia("(max-width:576px)");
+    const media = window.matchMedia("(max-width:992px)");
     const listener = (e) => {
       store.dispatch("settings/setIsMobile", e.matches);
       store.dispatch("settings/setShowAside", !e.matches);
