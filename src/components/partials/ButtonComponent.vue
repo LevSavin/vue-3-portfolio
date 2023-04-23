@@ -31,32 +31,85 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import iconEye from "@/components/icons/iconEye.vue";
-import iconConfirm from "@/components/icons/iconConfirm.vue";
-import iconUpload from "@/components/icons/iconUpload.vue";
-import iconPhotoUpload from "@/components/icons/iconPhotoUpload.vue";
-import iconChecklist from "@/components/icons/iconChecklist.vue";
-import iconAddUser from "@/components/icons/iconAddUser.vue";
-import iconLock from "@/components/icons/iconLock.vue";
-import iconDownload from "@/components/icons/iconDownload.vue";
-import iconFinalTable from "@/components/icons/iconFinalTable.vue";
-import iconHot from "@/components/icons/iconHot.vue";
-import iconForm from "@/components/icons/iconForm.vue";
-import iconNewOrder from "@/components/icons/iconNewOrder.vue";
-import iconDelete from "@/components/icons/iconDelete.vue";
-import iconNews from "@/components/icons/iconComparison.vue";
-import iconComparison from "@/components/icons/iconComparison.vue";
-import iconClose from "@/components/icons/iconClose.vue";
-import iconShare from "@/components/icons/iconShare.vue";
-import iconTechDock from "@/components/icons/iconTechDock.vue";
-import iconDocumentPreview from "@/components/icons/iconDocumentPreview.vue";
+import { defineComponent, defineAsyncComponent } from "vue";
+const iconRefresh = defineAsyncComponent(
+  () => import("@/components/icons/iconRefresh.vue")
+);
+const iconEye = defineAsyncComponent(
+  () => import("@/components/icons/iconEye.vue")
+);
+const iconConfirm = defineAsyncComponent(
+  () => import("@/components/icons/iconConfirm.vue")
+);
+const iconUpload = defineAsyncComponent(
+  () => import("@/components/icons/iconUpload.vue")
+);
+const iconPhotoUpload = defineAsyncComponent(
+  () => import("@/components/icons/iconPhotoUpload.vue")
+);
+const iconChecklist = defineAsyncComponent(
+  () => import("@/components/icons/iconChecklist.vue")
+);
+const iconAddUser = defineAsyncComponent(
+  () => import("@/components/icons/iconAddUser.vue")
+);
+const iconLock = defineAsyncComponent(
+  () => import("@/components/icons/iconLock.vue")
+);
+const iconDownload = defineAsyncComponent(
+  () => import("@/components/icons/iconDownload.vue")
+);
+const iconFinalTable = defineAsyncComponent(
+  () => import("@/components/icons/iconFinalTable.vue")
+);
+const iconHot = defineAsyncComponent(
+  () => import("@/components/icons/iconHot.vue")
+);
+const iconForm = defineAsyncComponent(
+  () => import("@/components/icons/iconForm.vue")
+);
+const iconNewOrder = defineAsyncComponent(
+  () => import("@/components/icons/iconNewOrder.vue")
+);
+const iconDelete = defineAsyncComponent(
+  () => import("@/components/icons/iconDelete.vue")
+);
+const iconNews = defineAsyncComponent(
+  () => import("@/components/icons/iconComparison.vue")
+);
+const iconComparison = defineAsyncComponent(
+  () => import("@/components/icons/iconComparison.vue")
+);
+const iconClose = defineAsyncComponent(
+  () => import("@/components/icons/iconClose.vue")
+);
+const iconShare = defineAsyncComponent(
+  () => import("@/components/icons/iconShare.vue")
+);
+const iconTechDock = defineAsyncComponent(
+  () => import("@/components/icons/iconTechDock.vue")
+);
+const iconChats = defineAsyncComponent(
+  () => import("@/components/icons/iconChats.vue")
+);
+const iconCalc = defineAsyncComponent(
+  () => import("@/components/icons/iconCalc.vue")
+);
+const iconSave = defineAsyncComponent(
+  () => import("@/components/icons/iconSave.vue")
+);
+const iconStatusDanger = defineAsyncComponent(
+  () => import("@/components/icons/iconStatusDanger.vue")
+);
+const iconStatusSuccess = defineAsyncComponent(
+  () => import("@/components/icons/iconStatusSuccess.vue")
+);
 
 export default defineComponent({
-  name: "ButtonComponent",
+  name: "buttonComponent",
   components: {
+    iconRefresh,
     iconEye,
-    iconDocumentPreview,
     iconConfirm,
     iconUpload,
     iconPhotoUpload,
@@ -74,6 +127,11 @@ export default defineComponent({
     iconClose,
     iconShare,
     iconTechDock,
+    iconChats,
+    iconCalc,
+    iconSave,
+    iconStatusDanger,
+    iconStatusSuccess,
   },
   emits: ["handle"],
   props: {

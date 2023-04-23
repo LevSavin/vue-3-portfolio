@@ -18,4 +18,5 @@ export default {
   edit: "Edit",
   cancel: "Сancel",
   confirm: "Confirm",
+  change_rules: "Change validation rules",
 };

@@ -1,0 +1,69 @@
+{
+  "name":{
+    "attr": {
+      "required": false,
+      "max_length": 10
+    },
+    "type": "CharField"
+  },
+  "maxWeights": {
+    "attr": {
+      "required": false,
+      "minimum": 50,
+      "maximum":1000
+    },
+    "type": "DecimalField"
+  },
+  "maxPallets": {
+    "attr": {
+      "required": false,
+      "minimum": 1,
+      "maximum": 20
+    },
+    "type": "IntegerField"
+  },
+  "height": {
+    "attr": {
+      "required": true,
+      "minimum": 10,
+      "maximum": 2000
+    },
+    "type": "IntegerField"
+  },
+  "volume": {
+    "attr": {
+      "required": true,
+      "minimum": 10,
+      "maximum":2000
+    },
+    "type": "IntegerField"
+  },
+  "email": {
+    "attr": {
+      "email": true,
+      "required": false
+    },
+    "type": "CharField"
+  },
+  "password": {
+    "attr": {
+      "password": true,
+      "required": false
+    },
+    "type": "CharField"
+  },
+  "phone": {
+    "attr": {
+      "phone": true,
+      "required": true
+    },
+    "type": "CharField"
+  },
+  "website": {
+    "attr": {
+      "url": true,
+      "required": true
+    },
+    "type": "CharField"
+  }
+}

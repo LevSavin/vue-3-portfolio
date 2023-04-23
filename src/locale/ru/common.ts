@@ -33,6 +33,7 @@ export default {
 
   menu: {
     main_menu: "Главное меню",
+    about: "Обо мне",
     portfolio: "Портфолио",
     examples_functionality: "Примеры функционала",
     dynamic_validation: "Динамическая валидация",

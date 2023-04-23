@@ -34,6 +34,7 @@ export default {
 
   menu: {
     main_menu: "Main menu",
+    about: "About",
     portfolio: "Portfolio",
     examples_functionality: "Examples of functionality",
     dynamic_validation: "Dynamic validation",

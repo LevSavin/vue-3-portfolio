@@ -9,6 +9,16 @@
     <p class="form-page__description">
       {{ $t("pages.validation_3") }}
     </p>
+    <p class="form-page__description">
+      {{ $t("pages.validation_4") }}
+    </p>
+
+    <buttonComponent
+      @click="toggleRules"
+      icon="iconRefresh"
+      buttonClass="btn-plain"
+      :text="$t('btns.change_rules')"
+    ></buttonComponent>
     <el-divider class="errors__divider"></el-divider>
     <h1 class="form-page__hero">{{ $t("common.form_dynamic_validation") }}</h1>
 
@@ -114,7 +124,9 @@ import { useI18n } from "vue-i18n";
 import { useForm } from "@/composables/useDynamicForm";
 import { errorsObjectType } from "@/types/common";
 import { errorsConst } from "@/constants/common";
-import json from "@/server/form-page-schema.json";
+import buttonComponent from "@/components/partials/ButtonComponent.vue";
+import rulesJson from "@/server/form-page-schema.json";
+import rulesJsonSecond from "@/server/form-page-schema-2.json";
 
 type formType = {
   data: any;
@@ -135,6 +147,11 @@ const dataConst = () => ({
   website: null,
 });
 
+const rulesMap = () => ({
+  rulesJson: rulesJson,
+  rulesJsonSecond,
+});
+
 const fieldsMapConst = () => ({
   transport: ["name", "maxWeights", "maxPallets", "height", "volume"],
   counterparty: ["email", "phone", "password", "website"],
@@ -142,7 +159,7 @@ const fieldsMapConst = () => ({
 
 export default defineComponent({
   name: "FormValidation",
-  components: {},
+  components: { buttonComponent },
   setup() {
     const formRef = ref<FormInstance>();
     const { t } = useI18n({});
@@ -150,6 +167,7 @@ export default defineComponent({
     const schemas = computed((): string => store.getters["docs/schemas"]);
     const fieldsMap = fieldsMapConst();
     const currentSchema = ref({});
+    const currentRules = ref("rulesJson");
 
     const form: formType = reactive({
       data: dataConst(),
@@ -158,10 +176,20 @@ export default defineComponent({
       errors: errorsConst,
     });
 
-    const getSchema = () => {
-      currentSchema.value = json;
+    const setSchema = (variant = currentRules.value) => {
+      currentSchema.value = rulesMap()[variant];
     };
-    getSchema();
+    setSchema();
+
+    const toggleRules = () => {
+      if (currentRules.value === "rulesJson") {
+        currentRules.value = "rulesJsonSecond";
+        setSchema("rulesJsonSecond");
+        return;
+      }
+      currentRules.value = "rulesJson";
+      setSchema("rulesJson");
+    };
 
     const requiredFields = computed(() => {
       if (schemas.value[form.schema]?.required) {
@@ -279,6 +307,7 @@ export default defineComponent({
       schemas,
       fieldsMap,
       passwordText,
+      toggleRules,
     };
   },
 });

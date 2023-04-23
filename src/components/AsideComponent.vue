@@ -30,7 +30,7 @@
             <asideItem
               :isCollapse="isAsideCollapsed"
               icon="iconPass"
-              :text="$t('common.menu.portfolio')"
+              :text="$t('common.menu.about')"
             ></asideItem>
           </router-link>
         </el-menu-item>

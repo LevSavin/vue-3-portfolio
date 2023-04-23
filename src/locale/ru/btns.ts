@@ -18,4 +18,5 @@ export default {
   edit: "Редактировать",
   cancel: "Отменить",
   confirm: "Подтвердить",
+  change_rules: "Сменить правила валидации",
 };
