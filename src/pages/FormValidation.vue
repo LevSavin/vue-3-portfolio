@@ -22,10 +22,11 @@
     >
       <div class="form-page__wrapper">
         <div class="form-page__section-wrapper">
+          <h2>{{ $t("common.form.transport") }}</h2>
           <div class="form-page__section">
             <div
               class="form-page__block"
-              v-for="(field, index) in formFields"
+              v-for="(field, index) in fieldsMap.transport"
               :key="index"
             >
               <el-form-item
@@ -41,29 +42,68 @@
               </el-form-item>
             </div>
           </div>
+        </div>
 
-          <el-form-item prop="submit">
-            <el-divider class="errors__divider"></el-divider>
-          </el-form-item>
-          <div class="form-page__submit">
-            <el-form-item>
-              <div>
-                <el-button class="btn-plain" size="large" @click="resetForm">
-                  {{ $t("btns.cancel_changes") }}
-                </el-button>
-              </div>
-              <div class="form-page__submit-btn">
-                <el-button
-                  :disabled="isSubmitDisabled"
-                  class="btn-primary"
-                  size="large"
-                  @click="onSubmitForm"
-                >
-                  {{ $t("btns.save_changes") }}
-                </el-button>
-              </div>
-            </el-form-item>
+        <div class="form-page__section-wrapper">
+          <h2>{{ $t("common.form.counterparty") }}</h2>
+          <div class="form-page__section">
+            <div
+              class="form-page__block"
+              v-for="(field, index) in fieldsMap.counterparty"
+              :key="index"
+            >
+              <el-form-item
+                :ref="field + 'Ref'"
+                :prop="field"
+                :label="$t(`labels.table.${field}`)"
+              >
+                <el-input
+                  v-model="form.data[field]"
+                  :placeholder="$t(`labels.table.${field}`)"
+                  @input="onClearErrorField(field)"
+                />
+              </el-form-item>
+            </div>
+
+            <div class="form__block">
+              <el-tooltip
+                placement="right"
+                effect="dark"
+                :content="passwordText"
+                raw-content
+              >
+                <p class="form__password-help link">
+                  <iconHelpInformation></iconHelpInformation>
+                  <span class="form-page__password-text">
+                    {{ $t("common.pass.requirements") }}
+                  </span>
+                </p>
+              </el-tooltip>
+            </div>
           </div>
+        </div>
+
+        <el-form-item prop="submit">
+          <el-divider class="errors__divider"></el-divider>
+        </el-form-item>
+        <div class="form-page__submit">
+          <el-form-item>
+            <div>
+              <el-button class="btn-plain" size="large" @click="resetForm">
+                {{ $t("btns.cancel_changes") }}
+              </el-button>
+            </div>
+            <div class="form-page__submit-btn">
+              <el-button
+                :disabled="isSubmitDisabled"
+                class="btn-primary"
+                size="large"
+                @click="onSubmitForm"
+              >
+                {{ $t("btns.save_changes") }}
+              </el-button>
+            </div>
+          </el-form-item>
         </div>
       </div>
     </el-form>
@@ -71,19 +111,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, computed, inject, watch } from "vue";
+import { defineComponent, reactive, ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import type { FormInstance, FormRules } from "element-plus";
 import { useI18n } from "vue-i18n";
 import { useForm } from "@/composables/useForm";
 import { errorsObjectType } from "@/types/common";
-import { errorsInterceptorObject } from "@/utils/errorsInterceptorObject";
 import { errorsConst } from "@/constants/common";
 
 type formType = {
   data: any;
   defaultData: any;
-  apiUrl: string;
   schema: string;
   errors: errorsObjectType;
 };
@@ -94,22 +132,30 @@ const dataConst = () => ({
   maxPallets: null,
   height: null,
   volume: null,
+  email: null,
+  password: null,
+  phone: null,
+  website: null,
+});
+
+const fieldsMapConst = () => ({
+  transport: ["name", "maxWeights", "maxPallets", "height", "volume"],
+  counterparty: ["email", "phone", "password", "website"],
 });
 
 export default defineComponent({
   name: "FormValidation",
   components: {},
   setup() {
-    const axios: any = inject("axios");
     const formRef = ref<FormInstance>();
     const { t } = useI18n({});
     const store = useStore();
     const schemas = computed((): string => store.getters["docs/schemas"]);
+    const fieldsMap = fieldsMapConst();
 
     const form: formType = reactive({
       data: dataConst(),
       defaultData: dataConst(),
-      apiUrl: "/api/vehicle_types",
       schema: "form-validation",
       errors: errorsConst,
     });
@@ -128,7 +174,6 @@ export default defineComponent({
     const {
       onPrepareRules,
       onClearErrorField,
-      onValidate,
       onSubmitForm,
       onGetDirtyData,
       onPrepareTypesData,
@@ -138,21 +183,13 @@ export default defineComponent({
       if (isSubmitDisabled.value) {
         return;
       }
-      const url = `${form.apiUrl}`;
       const params = onPrepareTypesData(onGetDirtyData(), currentSchema.value);
-      axios
-        .post(url, params)
-        .then(() => {
-          window.ElMessage({
-            showClose: true,
-            message: t("common.messages.succcess"),
-            type: "success",
-          });
-        })
-        .catch((error) => {
-          form.errors = errorsInterceptorObject(error);
-          onValidate();
-        });
+      console.log(params);
+      window.ElMessage({
+        showClose: true,
+        message: t("common.messages.succcess"),
+        type: "success",
+      });
     }
 
     let rules = reactive<FormRules>({});
@@ -165,16 +202,15 @@ export default defineComponent({
     };
     setRules();
 
-    const formFields = computed(() => {
-      const fields = Object.keys(form.data);
-      const excludeFields = ["id"];
-      excludeFields.forEach((item) => {
-        const index = fields.indexOf(item);
-        if (index !== -1) {
-          fields.splice(index, 1);
-        }
-      });
-      return fields;
+    const passwordText = computed(() => {
+      const result = `
+        <p class='text-white'>${t("common.pass.title")}<p>
+        <p class='text-white'>${t("common.pass.require_1")}</p>
+        <p class='text-white'>${t("common.pass.require_2")}</p>
+        <p class='text-white'>${t("common.pass.require_3")}</p>
+        <p class='text-white'>${t("common.pass.require_4")}</p>
+      `;
+      return result;
     });
 
     const resetForm = () => {
@@ -200,6 +236,10 @@ export default defineComponent({
     const maxPalletsRef: any = ref(null);
     const heightRef: any = ref(null);
     const volumeRef: any = ref(null);
+    const emailRef: any = ref(null);
+    const passwordRef: any = ref(null);
+    const phoneRef: any = ref(null);
+    const websiteRef: any = ref(null);
 
     const isSubmitDisabled = computed(() => {
       if (
@@ -207,7 +247,11 @@ export default defineComponent({
         isFieldValid(maxWeightsRef.value?.[0]?.validateState, "maxWeights") &&
         isFieldValid(maxPalletsRef.value?.[0]?.validateState, "maxPallets") &&
         isFieldValid(heightRef.value?.[0]?.validateState, "height") &&
-        isFieldValid(volumeRef.value?.[0]?.validateState, "volume")
+        isFieldValid(volumeRef.value?.[0]?.validateState, "volume") &&
+        isFieldValid(emailRef.value?.[0]?.validateState, "email") &&
+        isFieldValid(passwordRef.value?.[0]?.validateState, "password") &&
+        isFieldValid(phoneRef.value?.[0]?.validateState, "phone") &&
+        isFieldValid(websiteRef.value?.[0]?.validateState, "website")
       ) {
         return false;
       }
@@ -221,16 +265,21 @@ export default defineComponent({
       form,
       rules,
       isSubmitDisabled,
-      formFields,
       resetForm,
       nameRef,
       maxWeightsRef,
       maxPalletsRef,
       heightRef,
       volumeRef,
+      emailRef,
+      passwordRef,
+      phoneRef,
+      websiteRef,
       currentSchema,
       requiredFields,
       schemas,
+      fieldsMap,
+      passwordText,
     };
   },
 });

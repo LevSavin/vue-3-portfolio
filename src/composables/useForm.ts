@@ -34,7 +34,7 @@ export function useForm(form, formRef, sendData, schema) {
   // проверка на наличие значения
   const onValidateRequired = (rule: any, value: any, callback: any) => {
     if (value === "" || value === null || value === undefined) {
-      callback(new Error("Поле не может быть пустым"));
+      callback(new Error(t("validation.onValidateRequired")));
       return;
     }
     callback();
@@ -42,7 +42,7 @@ export function useForm(form, formRef, sendData, schema) {
 
   const onValidateForbiddenChars = (rule: any, value: any, callback: any) => {
     if (isForbiddenChars(String(value))) {
-      callback(new Error("Введены недопустимые символы"));
+      callback(new Error(t("validation.onValidateForbiddenChars")));
       return;
     }
     callback();
@@ -58,7 +58,7 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     const integerValid = isNumber(String(value));
     if (!integerValid) {
-      callback(new Error("Введите число"));
+      callback(new Error(t("validation.onValidateNumber")));
       return;
     }
     callback();
@@ -74,7 +74,7 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     const integerValid = isInteger(String(value));
     if (!integerValid) {
-      callback(new Error("Введите целое число"));
+      callback(new Error(t("validation.onValidateInteger")));
       return;
     }
     callback();
@@ -89,7 +89,7 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     const emailIsValid = isEmail(String(value).toLowerCase());
     if (!emailIsValid) {
-      callback(new Error("Некорректный e-mail"));
+      callback(new Error(t("validation.onValidateEmail")));
       return;
     }
     callback();
@@ -104,7 +104,7 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     const passValid = isPasswordCorrect(String(value));
     if (!passValid) {
-      callback(new Error("Пароль не соответствует требованиям"));
+      callback(new Error(t("validation.onValidatePass")));
       return;
     }
     callback();
@@ -119,7 +119,7 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     const phoneValid = isPhoneCorrect(String(value));
     if (!phoneValid) {
-      callback(new Error("Некорректный номер телефона"));
+      callback(new Error(t("validation.onValidatePhone")));
       return;
     }
     callback();
@@ -134,7 +134,7 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     const urlIsValid = isUrlCorrect(String(value).toLowerCase());
     if (!urlIsValid) {
-      callback(new Error(t("Некорректный url")));
+      callback(new Error(t("validation.onValidateUrl")));
       return;
     }
     callback();
@@ -150,7 +150,9 @@ export function useForm(form, formRef, sendData, schema) {
     if (String(value).length > schema.value[rule.field].maxLength) {
       callback(
         new Error(
-          `Максимальная длина ${schema.value[rule.field].maxLength} символов`
+          `${t("validation.onValidateMaxLength_1")}
+          ${schema.value[rule.field].maxLength}
+          ${t("validation.onValidateMaxLength_2")}`
         )
       );
       return;
@@ -167,7 +169,8 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     if (value < schema.value[rule.field].minimum) {
       callback(
-        new Error(`Минимальное значение ${schema.value[rule.field].minimum}`)
+        new Error(`${t("validation.onValidateMinimum")}
+        ${schema.value[rule.field].minimum}`)
       );
       return;
     }
@@ -183,7 +186,8 @@ export function useForm(form, formRef, sendData, schema) {
     // проверка на корректность данных
     if (value > Math.ceil(schema.value[rule.field].maximum)) {
       callback(
-        new Error(`Максимальное значение ${schema.value[rule.field].maximum}`)
+        new Error(`${t("validation.onValidateMaximum")}
+        ${schema.value[rule.field].maximum}`)
       );
       return;
     }
@@ -226,11 +230,9 @@ export function useForm(form, formRef, sendData, schema) {
   const onSubmitForm = async () => {
     onClearErrors();
     if (!formRef.value) return;
-    await formRef.value.validate((valid, fields) => {
+    await formRef.value.validate((valid) => {
       if (valid) {
         sendData();
-      } else {
-        console.log("error submit!", fields);
       }
     });
   };
@@ -287,13 +289,13 @@ export function useForm(form, formRef, sendData, schema) {
     string: onSkipValidate,
     number: onValidateNumber,
     integer: onValidateInteger,
-  };
-
-  const validationMap = {
     email: onValidateEmail,
     password: onValidatePass,
     phone: onValidatePhone,
     url: onValidateUrl,
+  };
+
+  const validationMap = {
     maxLength: onValidateMaxLength,
     minimum: onValidateMinimum,
     maximum: onValidateMaximum,

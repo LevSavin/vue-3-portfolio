@@ -13,5 +13,9 @@ export default {
     height: "Height",
     volume: "Volume",
     description: "Description",
+    email: "E-mail",
+    password: "Password",
+    phone: "Phone",
+    website: "Website",
   },
 };

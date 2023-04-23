@@ -2,8 +2,16 @@
   <div>
     <section class="section">
       <div class="desk">
-        <p class="desk__title">{{ $t("common.desk.title") }}</p>
-        <p class="desk__text">{{ $t("common.desk.text_1") }}</p>
+        <p class="desk__title">{{ $t("common.abbout.title") }}</p>
+        <p class="desk__text">{{ $t("common.abbout.text_1") }}</p>
+        <p class="desk__text">{{ $t("common.abbout.text_2") }}</p>
+        <p class="desk__text">{{ $t("common.abbout.text_3") }}</p>
+        <p class="desk__text">
+          {{ $t("common.abbout.text_4") }}
+          <a target="_blank" href="https://github.com/LevSavin/vue-3-portfolio">
+            {{ $t("common.abbout.link") }}
+          </a>
+        </p>
       </div>
     </section>
   </div>

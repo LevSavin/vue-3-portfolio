@@ -472,10 +472,8 @@ input {
     }
   }
 }
-.pass {
-  &__tooltip-text {
-    color: white;
-  }
+.text-white {
+  color: white;
 }
 .is-checked .el-checkbox__label {
   color: $color-primary !important;

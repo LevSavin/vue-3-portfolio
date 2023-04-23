@@ -13,5 +13,9 @@ export default {
     height: "Высота",
     volume: "Объем",
     description: "Описание",
+    email: "E-mail",
+    password: "Пароль",
+    phone: "Телефон",
+    website: "Веб-сайт",
   },
 };

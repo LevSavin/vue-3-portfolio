@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, inject, onBeforeUnmount } from "vue";
+import { defineComponent, computed, onBeforeUnmount } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import { showError } from "@/utils/errorsInterceptor";
+import json from "./server/schema.json";
 
 import Default from "@/layouts/Default.vue";
 import Blank from "@/layouts/Blank.vue";
@@ -22,7 +22,6 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const lang = computed((): string => store.getters["auth/lang"]);
-    const axios: any = inject("axios");
     const route = useRoute();
     const layout = computed(() => route.meta.layout || "Default");
     const isMobile = computed((): string => store.getters["settings/isMobile"]);
@@ -32,15 +31,7 @@ export default defineComponent({
     );
 
     const getSchema = () => {
-      const url = `/server/schema.json`;
-      axios
-        .get(url)
-        .then(({ data }) => {
-          store.dispatch("docs/setSchemas", data.schemas);
-        })
-        .catch((error) => {
-          showError(error);
-        });
+      store.dispatch("docs/setSchemas", json.schemas);
     };
     getSchema();
 
