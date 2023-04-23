@@ -1,7 +1,17 @@
 {
   "schemas": {
     "form-validation": {
-      "properties": {"name":{"maxLength":100,"type":"string","required":true},"maxWeights":{"minimum":1000,"maximum":100000,"type":"integer","required":true},"maxPallets":{"minimum":2,"maximum":100,"type":"number","nullable":true,"required":true},"height":{"minimum":1000,"maximum":100000,"type":"number","nullable":true},"volume":{"minimum":1000,"maximum":100000,"type":"number","nullable":true}},
+      "properties": {
+        "name":{"maxLength":100,"type":"string","required":true},
+        "maxWeights":{"minimum":1000,"maximum":100000,"type":"integer","required":true},
+        "maxPallets":{"minimum":2,"maximum":100,"type":"number", "required":true},
+        "height":{"minimum":1000,"maximum":100000,"type":"number"},
+        "volume":{"minimum":1000,"maximum":100000,"type":"number"},
+        "email":{"type":"email","required":true},
+        "password":{"type":"password","required":true},
+        "phone":{"type":"phone"},
+        "website":{"type":"url"}
+      },
       "required": ["name", "maxWeights", "maxPallets"]
     }
   }
