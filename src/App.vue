@@ -8,7 +8,6 @@
 import { defineComponent, computed, onBeforeUnmount } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import json from "./server/schema.json";
 
 import Default from "@/layouts/Default.vue";
 import Blank from "@/layouts/Blank.vue";
@@ -25,15 +24,9 @@ export default defineComponent({
     const route = useRoute();
     const layout = computed(() => route.meta.layout || "Default");
     const isMobile = computed((): string => store.getters["settings/isMobile"]);
-    const schemas = computed((): string => store.getters["docs/schemas"]);
     const tablesSettings = computed(
       (): string => store.getters["settings/tablesSettings"]
     );
-
-    const getSchema = () => {
-      store.dispatch("docs/setSchemas", json.schemas);
-    };
-    getSchema();
 
     // отслеживание ширины экрана мобильника и выставление флага
     const media = window.matchMedia("(max-width:992px)");
@@ -53,7 +46,6 @@ export default defineComponent({
       layout,
       isMobile,
       tablesSettings,
-      schemas,
     };
   },
 });

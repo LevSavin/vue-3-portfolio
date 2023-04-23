@@ -111,9 +111,10 @@ import { defineComponent, reactive, ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import type { FormInstance, FormRules } from "element-plus";
 import { useI18n } from "vue-i18n";
-import { useForm } from "@/composables/useForm";
+import { useForm } from "@/composables/useDynamicForm";
 import { errorsObjectType } from "@/types/common";
 import { errorsConst } from "@/constants/common";
+import json from "@/server/form-page-schema.json";
 
 type formType = {
   data: any;
@@ -148,6 +149,7 @@ export default defineComponent({
     const store = useStore();
     const schemas = computed((): string => store.getters["docs/schemas"]);
     const fieldsMap = fieldsMapConst();
+    const currentSchema = ref({});
 
     const form: formType = reactive({
       data: dataConst(),
@@ -156,9 +158,10 @@ export default defineComponent({
       errors: errorsConst,
     });
 
-    const currentSchema = computed(() => {
-      return schemas.value[form.schema]?.properties;
-    });
+    const getSchema = () => {
+      currentSchema.value = json;
+    };
+    getSchema();
 
     const requiredFields = computed(() => {
       if (schemas.value[form.schema]?.required) {

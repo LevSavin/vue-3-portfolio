@@ -17,15 +17,16 @@ import type { FormRules } from "element-plus";
 export function useForm(form, formRef, sendData, schema) {
   const { t } = useI18n({});
 
-  // поле без дополнительных проверок
-  const onSkipValidate = (rule: any, value: any, callback: any) => {
+  // заглушка валидации
+  const onSkipValidatation = (rule: any, value: any, callback: any) => {
     callback();
   };
 
   // проверка на наличие ошибок серверной валидации
   const onValidateInternalErrors = (rule: any, value: any, callback: any) => {
+    // здесь происходит распределение ошибок по полям
     if (form.errors?.[rule.field]) {
-      callback(new Error(form.errors[rule.field].join(", ")));
+      callback(new Error(form.errors[rule.field]));
       return;
     }
     callback();
@@ -49,7 +50,7 @@ export function useForm(form, formRef, sendData, schema) {
   };
 
   // проверка на числа с плавающей точкой
-  const onValidateNumber = (rule: any, value: any, callback: any) => {
+  const onValidateFloat = (rule: any, value: any, callback: any) => {
     // если поле пустое, то пропускаем проверки
     if (value === "" || value === null) {
       callback();
@@ -147,14 +148,62 @@ export function useForm(form, formRef, sendData, schema) {
       return;
     }
     // проверка на корректность данных
-    if (String(value).length > schema.value[rule.field].maxLength) {
+    if (String(value).length > schema.value[rule.field].attr.max_length) {
       callback(
         new Error(
           `${t("validation.onValidateMaxLength_1")}
-          ${schema.value[rule.field].maxLength}
-          ${t("validation.onValidateMaxLength_2")}`
+        ${schema.value[rule.field].attr.max_length}
+        ${t("validation.onValidateMaxLength_2")}`
         )
       );
+      return;
+    }
+    callback();
+  };
+
+  const onValidateMinLength = (rule: any, value: any, callback: any) => {
+    // если поле пустое, то пропускаем проверки
+    if (value === "" || value === null) {
+      callback();
+      return;
+    }
+    // проверка на корректность данных
+    if (String(value).length < schema.value[rule.field].attr.min_length) {
+      callback(new Error(t("labels.error_data")));
+      return;
+    }
+    callback();
+  };
+
+  const onValidateMaxDigits = (rule: any, value: any, callback: any) => {
+    // если поле пустое, то пропускаем проверки
+    if (value === "" || value === null) {
+      callback();
+      return;
+    }
+    // проверка на корректность данных
+    const onlyDigits = value.replace(/[^0-9]/g, "");
+    if (String(onlyDigits).length > schema.value[rule.field].attr.max_digits) {
+      callback(new Error(t("labels.error_data")));
+      return;
+    }
+    callback();
+  };
+
+  const onValidateDecimalPlaces = (rule: any, value: any, callback: any) => {
+    // если поле пустое, то пропускаем проверки
+    if (value === "" || value === null) {
+      callback();
+      return;
+    }
+    // проверка на корректность данных
+    const splitedDigit = value.split(".");
+    if (
+      splitedDigit[1] &&
+      String(splitedDigit[1]).length >
+        schema.value[rule.field].attr.decimal_places
+    ) {
+      callback(new Error(t("labels.error_data")));
       return;
     }
     callback();
@@ -167,10 +216,10 @@ export function useForm(form, formRef, sendData, schema) {
       return;
     }
     // проверка на корректность данных
-    if (value < schema.value[rule.field].minimum) {
+    if (value < schema.value[rule.field].attr.minimum) {
       callback(
         new Error(`${t("validation.onValidateMinimum")}
-        ${schema.value[rule.field].minimum}`)
+        ${schema.value[rule.field].attr.minimum}`)
       );
       return;
     }
@@ -184,10 +233,10 @@ export function useForm(form, formRef, sendData, schema) {
       return;
     }
     // проверка на корректность данных
-    if (value > Math.ceil(schema.value[rule.field].maximum)) {
+    if (value > Math.ceil(schema.value[rule.field].attr.maximum)) {
       callback(
         new Error(`${t("validation.onValidateMaximum")}
-        ${schema.value[rule.field].maximum}`)
+      ${schema.value[rule.field].attr.maximum}`)
       );
       return;
     }
@@ -230,9 +279,11 @@ export function useForm(form, formRef, sendData, schema) {
   const onSubmitForm = async () => {
     onClearErrors();
     if (!formRef.value) return;
-    await formRef.value.validate((valid) => {
+    await formRef.value.validate((valid, fields) => {
       if (valid) {
         sendData();
+      } else {
+        console.log("error submit!", fields);
       }
     });
   };
@@ -273,11 +324,15 @@ export function useForm(form, formRef, sendData, schema) {
   const onPrepareTypesData = (data, schema): any => {
     const newData = JSON.parse(JSON.stringify(data));
     for (const key in newData) {
-      if (typeof newData[key] !== schema[key].type) {
-        if (schema[key].type === "number" || schema[key].type === "integer") {
+      if (schema[key] && typeof newData[key] !== schema[key].type) {
+        if (
+          schema[key].type === "DecimalField" ||
+          schema[key].type === "IntegerField"
+        ) {
           newData[key] = +newData[key];
         }
-        if (schema[key].type === "string") {
+
+        if (schema[key].type === "CharField") {
           newData[key] = newData[key].toString();
         }
       }
@@ -286,31 +341,25 @@ export function useForm(form, formRef, sendData, schema) {
   };
 
   const typesValidationMap = {
-    string: onSkipValidate,
-    number: onValidateNumber,
-    integer: onValidateInteger,
+    CharField: onSkipValidatation,
+    DecimalField: onValidateFloat,
+    IntegerField: onValidateInteger,
+  };
+
+  const validationMap = {
     email: onValidateEmail,
     password: onValidatePass,
     phone: onValidatePhone,
     url: onValidateUrl,
-  };
-
-  const validationMap = {
-    maxLength: onValidateMaxLength,
+    min_length: onValidateMinLength,
+    max_length: onValidateMaxLength,
+    max_digits: onValidateMaxDigits,
+    decimal_places: onValidateDecimalPlaces,
     minimum: onValidateMinimum,
     maximum: onValidateMaximum,
-    type: typesValidationMap,
   };
 
   const onPrepareRules = (schema): FormRules => {
-    // формируем схему без лищних полей
-    const filteredSchema = {};
-    for (const key in schema) {
-      if (!schema[key].readOnly) {
-        filteredSchema[key] = schema[key];
-      }
-    }
-
     const result = {
       submit: [
         {
@@ -319,7 +368,7 @@ export function useForm(form, formRef, sendData, schema) {
         },
       ],
     };
-    for (const key in filteredSchema) {
+    for (const key in schema) {
       // набор проверок по умолчанию
       result[key] = [
         {
@@ -332,7 +381,7 @@ export function useForm(form, formRef, sendData, schema) {
         },
       ];
       // доп. проверка если поле обязательное
-      if (filteredSchema[key].required) {
+      if (schema[key].attr.required) {
         result[key].push({
           required: true,
           validator: onValidateRequired,
@@ -340,14 +389,16 @@ export function useForm(form, formRef, sendData, schema) {
         });
       }
       // формирование дополнительных проверок
-      for (const schemaKey in filteredSchema[key]) {
-        // проверка типа поля, если задано
-        if (schemaKey === "type") {
-          result[key].push({
-            validator: validationMap.type[filteredSchema[key].type],
-            trigger: "change",
-          });
-        } else if (validationMap[schemaKey]) {
+
+      // проверка типа поля, если задано
+      if (typesValidationMap[schema[key].type]) {
+        result[key].push({
+          validator: typesValidationMap[schema[key].type],
+          trigger: "change",
+        });
+      }
+      for (const schemaKey in schema[key].attr) {
+        if (validationMap[schemaKey]) {
           // прочие проверки, если есть
           result[key].push({
             validator: validationMap[schemaKey],
@@ -360,15 +411,16 @@ export function useForm(form, formRef, sendData, schema) {
   };
 
   return {
-    onSkipValidate,
+    onSkipValidatation,
     onValidateRequired,
-    onValidateNumber,
+    onValidateFloat,
     onValidateInteger,
     onValidateEmail,
     onValidatePass,
     onValidatePhone,
     onValidateUrl,
     onValidateMaxLength,
+    onValidateMaxDigits,
     onValidateMinimum,
     onValidateMaximum,
     onValidateSubmit,
