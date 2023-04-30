@@ -1,8 +1,8 @@
 <template>
   <div class="form-page">
-    <p class="form-page__description">
+    <h3 class="form-page__description">
       {{ $t("pages.validation_1") }}
-    </p>
+    </h3>
     <p class="form-page__description">
       {{ $t("pages.validation_2") }}
     </p>
@@ -12,7 +12,24 @@
     <p class="form-page__description">
       {{ $t("pages.validation_4") }}
     </p>
+    <p class="form-page__description">
+      <a
+        href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/pages/FormValidation.vue"
+        target="_blanc"
+        >{{ $t("pages.here") }}</a
+      >
+      <span>&nbsp;{{ $t("pages.view_code_1") }}</span>
+      <a
+        href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/composables/useDynamicForm.ts"
+        target="_blanc"
+        >{{ $t("pages.here_lowercase") }}</a
+      >
+      <span>{{ $t("pages.view_code_2") }}</span>
+    </p>
 
+    <h3 class="form-page__description">
+      {{ $t("pages.validation_5") }}
+    </h3>
     <buttonComponent
       @click="toggleRules"
       icon="iconRefresh"
