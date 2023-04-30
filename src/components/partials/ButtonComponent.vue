@@ -89,9 +89,6 @@ const iconShare = defineAsyncComponent(
 const iconTechDock = defineAsyncComponent(
   () => import("@/components/icons/iconTechDock.vue")
 );
-const iconChats = defineAsyncComponent(
-  () => import("@/components/icons/iconChats.vue")
-);
 const iconCalc = defineAsyncComponent(
   () => import("@/components/icons/iconCalc.vue")
 );
