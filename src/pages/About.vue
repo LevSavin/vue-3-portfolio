@@ -32,8 +32,8 @@ export default defineComponent({
 .desk {
   max-width: 1352px;
   margin: 0 auto;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 24px;
   &__title {
     font-weight: 700;
     text-align: center;

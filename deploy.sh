@@ -1,5 +1,6 @@
+git pull
 npm run build
-cp dist/index.html dist/404.html
-git add dist -f
-git commit -m "adding dist"
-git subtree push --prefix dist origin gh-pages
+cp build/index.html build/404.html
+git add build -f
+git commit -m "adding build"
+git push origin `git subtree split --prefix build master`:gh-pages-sh --force
