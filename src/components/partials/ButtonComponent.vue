@@ -38,9 +38,6 @@ const iconRefresh = defineAsyncComponent(
 const iconEye = defineAsyncComponent(
   () => import("@/components/icons/iconEye.vue")
 );
-const iconConfirm = defineAsyncComponent(
-  () => import("@/components/icons/iconConfirm.vue")
-);
 const iconUpload = defineAsyncComponent(
   () => import("@/components/icons/iconUpload.vue")
 );
@@ -71,11 +68,8 @@ const iconForm = defineAsyncComponent(
 const iconNewOrder = defineAsyncComponent(
   () => import("@/components/icons/iconNewOrder.vue")
 );
-const iconDelete = defineAsyncComponent(
-  () => import("@/components/icons/iconDelete.vue")
-);
 const iconNews = defineAsyncComponent(
-  () => import("@/components/icons/iconComparison.vue")
+  () => import("@/components/icons/iconNews.vue")
 );
 const iconComparison = defineAsyncComponent(
   () => import("@/components/icons/iconComparison.vue")
@@ -92,22 +86,12 @@ const iconTechDock = defineAsyncComponent(
 const iconCalc = defineAsyncComponent(
   () => import("@/components/icons/iconCalc.vue")
 );
-const iconSave = defineAsyncComponent(
-  () => import("@/components/icons/iconSave.vue")
-);
-const iconStatusDanger = defineAsyncComponent(
-  () => import("@/components/icons/iconStatusDanger.vue")
-);
-const iconStatusSuccess = defineAsyncComponent(
-  () => import("@/components/icons/iconStatusSuccess.vue")
-);
 
 export default defineComponent({
   name: "buttonComponent",
   components: {
     iconRefresh,
     iconEye,
-    iconConfirm,
     iconUpload,
     iconPhotoUpload,
     iconChecklist,
@@ -118,17 +102,12 @@ export default defineComponent({
     iconHot,
     iconForm,
     iconNewOrder,
-    iconDelete,
     iconNews,
     iconComparison,
     iconClose,
     iconShare,
     iconTechDock,
-    iconChats,
     iconCalc,
-    iconSave,
-    iconStatusDanger,
-    iconStatusSuccess,
   },
   emits: ["handle"],
   props: {
