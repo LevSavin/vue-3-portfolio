@@ -8,7 +8,18 @@
                   "duty": 5,
                   "group": "Елочные игрушки и украшения",
                   "okpd2": "123",
-                  "photo": null,
+                  "photo": [
+                    {
+                      "id": 1,
+                      "big": "images/upload/1.big.jpg",
+                      "small": "images/upload/1.small.jpg"
+                    },
+                    {
+                      "id": 2,
+                      "big": "images/upload/2.big.webp",
+                      "small": "images/upload/2.small.webp"
+                    }
+                  ],
                   "price": 300,
                   "title": "Гирлянда светодиодная 5м",
                   "tnved": 12311223,
@@ -58,7 +69,13 @@
                   "duty": 6,
                   "group": "Контейнеры для хранения продуктов",
                   "okpd2": "124",
-                  "photo": null,
+                  "photo": [
+                    {
+                      "id": 44,
+                      "big": "images/upload/44.jpg",
+                      "small": "images/upload/44.jpg"
+                    }
+                  ],
                   "price": 301,
                   "title": "Набор контейнеров д/еды 5шт (300мл, 550мл, 900мл, 1500мл, 2400мл)",
                   "tnved": 123123,
@@ -108,9 +125,25 @@
                   "duty": 7,
                   "group": "Елочные игрушки и украшения",
                   "okpd2": "125",
-                  "photo": null,
-                  "price": 302,
-                  "title": "Гирлянда светодиодная 5м",
+                  "photo": [
+                    {
+                      "id": 33,
+                      "big": "images/upload/33.jpg",
+                      "small": "images/upload/33.jpg"
+                    },
+                    {
+                      "id": 34,
+                      "big": "images/upload/34.jpg",
+                      "small": "images/upload/34.jpg"
+                    },
+                    {
+                      "id": 35,
+                      "big": "images/upload/35.jpg",
+                      "small": "images/upload/35.jpg"
+                    }
+                  ],
+                  "price": 502,
+                  "title": "Гирлянда светодиодная 10м",
                   "tnved": 123123,
                   "excise": 23,
                   "article": "Ф003",
@@ -158,9 +191,20 @@
                   "duty": 8,
                   "group": "Контейнеры для хранения продуктов",
                   "okpd2": "126",
-                  "photo": null,
-                  "price": 303,
-                  "title": "Набор контейнеров д/еды 5шт (300мл, 550мл, 900мл, 1500мл, 2400мл)",
+                  "photo": [
+                    {
+                      "id": 66,
+                      "big": "images/upload/66.jpg",
+                      "small": "images/upload/66.jpg"
+                    },
+                    {
+                      "id": 67,
+                      "big": "images/upload/67.jpg",
+                      "small": "images/upload/67.jpg"
+                    }
+                  ],
+                  "price": 603,
+                  "title": "Набор контейнеров д/еды 10шт (300мл, 550мл, 900мл, 1500мл, 2400мл)",
                   "tnved": 123124,
                   "excise": 24,
                   "article": "Ф004",

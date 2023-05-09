@@ -5,6 +5,7 @@ export default {
   table_columns_view: "Отображение колонок таблицы",
   lang: "Язык",
   form_dynamic_validation: "Динамическая валидация формы",
+  more: "Еще",
 
   abbout: {
     title: "Обо мне",

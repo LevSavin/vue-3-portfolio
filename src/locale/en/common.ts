@@ -5,6 +5,7 @@ export default {
   table_columns_view: "Table columns display",
   lang: "Language",
   form_dynamic_validation: "Dynamic form validation",
+  more: "More",
 
   abbout: {
     title: "About me.",

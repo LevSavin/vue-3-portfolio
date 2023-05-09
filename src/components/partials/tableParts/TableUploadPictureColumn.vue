@@ -42,7 +42,7 @@
           ></pictureForColumn>
           <button class="link column__icon-wrap" @click.stop="showPreviewMore">
             <span>
-              {{ $t("tech.more") + " " + (data.photo.length - 1) }}
+              {{ $t("common.more") + " " + (data.photo.length - 1) }}
             </span>
             <div class="column__icon">
               <iconEye v-show="false"></iconEye>
