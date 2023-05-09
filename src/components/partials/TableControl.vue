@@ -236,6 +236,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     margin-top: 16px;
+    margin-bottom: 16px;
     align-items: center;
     @media (min-width: 992px) {
       max-height: 40px;
@@ -243,6 +244,7 @@ export default defineComponent({
     }
     @media (min-width: 1150px) {
       margin-top: 0px;
+      margin-bottom: 0px;
       min-width: 555px;
       justify-content: flex-end;
     }

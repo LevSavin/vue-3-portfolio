@@ -6,20 +6,9 @@ export const handlerMappingConst = Object.freeze({
 });
 
 export const negotiationDataConst: negotiationDataType = Object.freeze({
-  id: null,
-  outer_id: null,
-  status: null,
-  editable: false,
-  handler: null,
-  created_at: null,
-  payload: {
-    last_analyze: null,
-    chain: null,
-    default_chain: null,
-    payload: null,
+  chain: {
+    items: [],
   },
-  order: null,
-  thread: null,
 });
 
 export const managerNegotiationChangeItemsConst = Object.freeze([
@@ -28,6 +17,7 @@ export const managerNegotiationChangeItemsConst = Object.freeze([
   "group",
   "okpd2",
   "price",
+  "comment",
   "title",
   "tnved",
   "and_or",
@@ -93,7 +83,7 @@ export const companyNegotiationChangeItemsConst = Object.freeze([
   "piece_volume_l",
   "excise_currency",
   "piece_weight_dry",
-  "supplier_comment",
+  "comment",
   "container_20_count",
   "container_40_count",
   "packing_group_type",
@@ -113,32 +103,12 @@ export const companyNegotiationChangeItemsConst = Object.freeze([
   "piece_weight_net_with_packing",
 ]);
 
-export const managerNegotiationRelatedItemsConst = Object.freeze([
-  "amount",
-  "border_place",
-  "transportation_time",
-  "transportation_type",
-  "transportation_point",
-]);
-
 export const chainItemsFilterPresetConst = Object.freeze([
   "id",
   "title",
   "photo",
   "price",
   "currency",
-  "article",
-  "supplier_comment",
-]);
-
-export const companyChainItemsPresetConst = Object.freeze([
-  "id",
-  "title",
-  "photo",
-  "price",
-  "currency",
-  "article",
-  "supplier_comment",
-  "container_20_count",
-  "container_40_count",
+  "source_description",
+  "comment",
 ]);

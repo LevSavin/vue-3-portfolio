@@ -1,5 +1,34 @@
 <template>
   <div class="table-items">
+    <div class="table-items__description form-page">
+      <h3 class="form-page__description">
+        {{ $t("pages.validation_1") }}
+      </h3>
+      <p class="form-page__description">
+        {{ $t("pages.validation_2") }}
+      </p>
+      <p class="form-page__description">
+        {{ $t("pages.validation_3") }}
+      </p>
+      <p class="form-page__description">
+        {{ $t("pages.validation_4") }}
+      </p>
+      <p class="form-page__description">
+        <a
+          href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/pages/FormValidation.vue"
+          target="_blanc"
+          >{{ $t("pages.here") }}</a
+        >
+        <span>&nbsp;{{ $t("pages.view_code_1") }}</span>
+        <a
+          href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/composables/useDynamicForm.ts"
+          target="_blanc"
+          >{{ $t("pages.here_lowercase") }}</a
+        >
+        <span>{{ $t("pages.view_code_2") }}</span>
+      </p>
+    </div>
+
     <div v-if="form.data.chain">
       <div v-if="form.data.chain.items.length > 0">
         <tableControl
@@ -46,6 +75,44 @@
       </div>
     </div>
 
+    <div v-if="form.savedData.chain">
+      <div
+        v-if="form.savedData.chain.items.length > 0"
+        class="table-items__saved-data"
+      >
+        <el-divider></el-divider>
+        <h3>
+          {{ $t("pages.saved_data") }}
+        </h3>
+
+        <tableFilter
+          ref="tableFilterRef"
+          :data="form.savedData.chain.items"
+          :filterColumnsPreset="filterPreset"
+          :sortingColumnsPreset="filterPreset"
+          useColumnsSortingPreset
+        >
+          <template #default="scope">
+            <customTable
+              v-if="scope.data.length > 0"
+              @pictureOperation="pictureOperation"
+              :uploadPictureColumns="{
+                photo: { isEditable: false },
+              }"
+              :data="scope.data"
+              :filteredColumns="scope.filteredColumns"
+              hasColumnTranslate
+              width="200px"
+              :columnsMinWidth="columnsMinWidth"
+              class="table"
+              size="default"
+              maxHeight="60vh"
+            ></customTable>
+          </template>
+        </tableFilter>
+      </div>
+    </div>
+
     <div class="table-items__footer-compensator"></div>
     <div class="table-items__footer">
       <el-divider></el-divider>
@@ -55,9 +122,8 @@
         <div class="table-items__btns-block">
           <buttonComponent
             @click="applyChanges"
-            icon="iconSave"
-            :text="$t('btns.send')"
-            class="btn-success table-items__btns-item"
+            :text="$t('btns.save_changes')"
+            class="btn-primary table-items__btns-item"
             :disabled="!isDataChanged"
           ></buttonComponent>
         </div>
@@ -77,11 +143,10 @@
 import { defineComponent, ref, reactive, onMounted, computed } from "vue";
 import customTable from "@/components/partials/Table.vue";
 import tableFilter from "@/components/partials/TableFilter.vue";
-import tableControl from "@/components/partials/TableControl.vue";
 import picturePreviewModal from "@/components/partials/tableParts/PicturePreviewModal.vue";
 import dynamicTableValidation from "@/server/dynamic-table-validation.json";
 import dynamicTableData from "@/server/dynamic-table.json";
-import { tableFormDataType } from "@/types/common";
+import { tableFormDataType, negotiationDataType } from "@/types/common";
 import {
   managerNegotiationChangeItemsConst,
   negotiationDataConst,
@@ -89,8 +154,9 @@ import {
 } from "@/constants/negotiation";
 
 type formType = {
-  data: any;
+  data: negotiationDataType;
   changedChainItems: number[];
+  savedData: any;
   searchParams: searchParamsType;
 };
 
@@ -110,7 +176,6 @@ export default defineComponent({
   components: {
     customTable,
     tableFilter,
-    tableControl,
     picturePreviewModal,
   },
 
@@ -135,6 +200,7 @@ export default defineComponent({
     const form: formType = reactive({
       data: negotiationDataConst,
       changedChainItems: [],
+      savedData: negotiationDataConst,
       searchParams: initSearchParams(),
     });
 
@@ -150,7 +216,7 @@ export default defineComponent({
 
     const applyChanges = () => {
       const payload = preparePayloadForApply();
-      console.log(payload);
+      form.savedData = payload;
     };
 
     const preparePayloadForApply = () => {
@@ -218,5 +284,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/pages/dict.scss";
 @import "@/assets/scss/pages/tech/editableDynamicTable.scss";
 </style>

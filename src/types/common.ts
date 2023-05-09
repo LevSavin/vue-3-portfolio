@@ -44,13 +44,5 @@ export type showPreviewPictureType = {
 };
 
 export type negotiationDataType = {
-  id: number | null;
-  created_at: string | null;
-  editable: boolean;
-  handler: string | null;
-  outer_id: string | null;
-  payload: any | null;
-  status: string | null;
-  order: number | null;
-  thread: number | null;
+  chain: any | null;
 };

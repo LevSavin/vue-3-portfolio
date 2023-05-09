@@ -11,4 +11,5 @@ export default {
   validation_4:
     "Add the ability for the backend to change validation rules (this will be useful, for example, to have different validation rules for one user versus another. Or to change the rules during the form filling process based on the entered values).",
   validation_5: "To change validation rules, click the button below.",
+  saved_data: "Saved data",
 };

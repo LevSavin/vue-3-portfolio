@@ -65,7 +65,7 @@ export default {
     group: "Группа",
     price_type: "Ценовой сегмент",
     title: "Наименование продукта",
-    source_description: "Сырье(описание)",
+    source_description: "Сырье (описание)",
     specification: "Тех.условия (ГОСТ, ТУ)",
     packing_type: "Вид индивидуальной упаковки",
     other_params: "Доп.параметры",

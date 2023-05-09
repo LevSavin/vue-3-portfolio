@@ -311,49 +311,6 @@ input {
   }
 }
 
-.el-step__title {
-  font-weight: 500 !important;
-}
-.el-step__description {
-  font-size: 14px !important;
-  line-height: 24px !important;
-}
-.el-step__icon.is-text {
-  border-radius: 5px !important;
-}
-.is-process .el-step__line {
-  background-color: $color-primary !important;
-}
-.is-success .el-step__line {
-  background-color: $green-primary !important;
-}
-.el-step__head.is-process {
-  color: $color-primary !important;
-  border-color: $color-primary !important;
-}
-.el-step__title.is-process {
-  color: $color-primary !important;
-}
-.el-step__head.is-success {
-  color: $green-primary !important;
-  border-color: $green-primary !important;
-}
-.el-step__title.is-success {
-  color: $green-primary !important;
-}
-
-
-.el-table--border .el-table__inner-wrapper::after, .el-table__border-left-patch, .el-table--border::after, .el-table--border::before {
-  display: none;
-}
-
-.el-table .is-first-column {
-  border-right: none !important;
-}
-.el-table__header {
-  min-height: 60px;
-}
-
 .el-table__header {
   min-height: 60px;
 }
@@ -367,6 +324,9 @@ input {
     font-size: 14px;
     line-height: 20px;
     color: $color-font;
+    &-cell {
+      background-color: $color-gray-2 !important;
+    }
   }
   &__row {
     font-size: 13px;
@@ -384,8 +344,11 @@ input {
     max-height: calc(100vh - 290px);
   }
 }
-
 .modal {
+  &-mini {
+    max-width: 400px !important;
+    border-radius: 8px !important;
+  }
   &-small {
     max-width: 728px !important;
     border-radius: 8px !important;
@@ -472,11 +435,9 @@ input {
     }
   }
 }
-.text-white {
-  color: white;
-}
-.is-checked .el-checkbox__label {
-  color: $color-primary !important;
+
+.table-form-column .el-input__wrapper {
+  padding-left: 0px !important;
 }
 .checkbox__primary:hover {
   color: $color-primary-plain-hover;
