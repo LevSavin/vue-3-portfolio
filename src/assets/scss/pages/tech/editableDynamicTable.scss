@@ -1,0 +1,61 @@
+.table-items {
+  position: relative;
+  height: 100%;
+  &__table-control {
+    margin-bottom: 16px;
+  }
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    @media(max-width: 1365px){
+      position: static;
+    }
+    width: 100%;
+    &-compensator {
+      height: 90px;
+      @media(max-width: 1365px){
+        height: 0;
+      }
+    }
+  }
+  &__btns-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    @media (min-width: 1366px) {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+  &__btns-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 300px;
+    width: 100%;
+    margin-bottom: 16px;
+    @media (min-width: 768px) {
+      width: auto;
+    }
+    @media (min-width: 1366px) {
+      display: flex;
+      align-items: center;
+      max-width: initial;
+      gap: 0px;
+      margin-bottom: 0px;
+    }
+  }
+  &__btns-item {
+    display: flex;
+    justify-content: center;
+    @media (max-width: 1365px) {
+      margin-left: 0px;
+    }
+  }
+}

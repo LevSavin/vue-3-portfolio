@@ -1,0 +1,351 @@
+{
+  "duty_special": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 10,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "price": {
+      "attr": {
+          "required": true,
+          "allow_null": false,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "transport_box_volume": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "weight_gross": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "piece_height": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "duty": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 10,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "container_20_count": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "price_segment": {
+      "attr": {
+          "choices": [
+              "Low \\ Низкий",
+              "Middle \\ Средний",
+              "High \\ Высокий"
+          ],
+          "required": false,
+          "allow_null": true
+      },
+      "type": "ChoiceField"
+  },
+  "container_40_count": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "source_description": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 100
+      },
+      "type": "CharField"
+  },
+  "and_or": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 3
+      },
+      "type": "CharField"
+  },
+  "item_size": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 96
+      },
+      "type": "CharField"
+  },
+  "piece_weight_dry": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "excise": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 10,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "piece_weight_net_with_packing": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "pre_order_min_party": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "group_height": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "group_length": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "transport_box_height": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "title": {
+      "attr": {
+          "required": true,
+          "allow_null": false,
+          "max_length": 100,
+          "allow_blank": false
+      },
+      "type": "CharField"
+  },
+  "pallet_count": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "pre_order_quantity_pieces": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "alcohol_degree": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "transport_box_length": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "packing_label": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 200
+      },
+      "type": "CharField"
+  },
+  "nesting_group_count": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "piece_packing_type": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 200
+      },
+      "type": "CharField"
+  },
+  "nesting_transport_box_count": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "group_width": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "duty_special_currency": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 8
+      },
+      "type": "CharField"
+  },
+  "excise_currency": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 8
+      },
+      "type": "CharField"
+  },
+  "okpd2": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 12
+      },
+      "type": "CharField"
+  },
+  "piece_length": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "tnved": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "transport_box_width": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "packing_group_type": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 200
+      },
+      "type": "CharField"
+  },
+  "piece_width": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  },
+  "vat": {
+      "attr": {
+          "required": false,
+          "allow_null": true
+      },
+      "type": "IntegerField"
+  },
+  "excise_unit_measurement": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 32
+      },
+      "type": "CharField"
+  },
+  "group": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 100
+      },
+      "type": "CharField"
+  },
+  "duty_special_unit_measurement": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_length": 32
+      },
+      "type": "CharField"
+  },
+  "piece_volume_l": {
+      "attr": {
+          "required": false,
+          "allow_null": true,
+          "max_digits": 12,
+          "decimal_places": 2
+      },
+      "type": "DecimalField"
+  }
+}

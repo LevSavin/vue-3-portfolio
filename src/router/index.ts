@@ -14,6 +14,11 @@ const router = createRouter({
       name: "FormValidation",
       component: () => import("@/pages/FormValidation.vue"),
     },
+    {
+      path: "/editable-dynamic-table",
+      name: "EditableDynamicTable",
+      component: () => import("@/pages/EditableDynamicTable.vue"),
+    },
   ],
 });
 

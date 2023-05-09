@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import preloader from "@/components/partials/Preloader.vue";
+import preloader from "@/components/Partials/Preloader.vue";
 
 export default defineComponent({
   name: "PreloaderBlock",

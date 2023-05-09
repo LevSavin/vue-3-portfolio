@@ -19,4 +19,5 @@ export default {
   cancel: "Сancel",
   confirm: "Confirm",
   change_rules: "Change validation rules",
+  use_filter: "Settings",
 };

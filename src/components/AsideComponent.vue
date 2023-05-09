@@ -50,6 +50,14 @@
               {{ $t("common.menu.dynamic_validation") }}
             </router-link>
           </el-menu-item>
+          <el-menu-item index="/editable-dynamic-table">
+            <router-link
+              class="aside__link"
+              :to="{ path: '/editable-dynamic-table' }"
+            >
+              {{ $t("common.menu.editable_dynamic_table") }}
+            </router-link>
+          </el-menu-item>
         </el-sub-menu>
       </el-menu>
 

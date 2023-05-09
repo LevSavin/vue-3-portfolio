@@ -19,4 +19,5 @@ export default {
   cancel: "Отменить",
   confirm: "Подтвердить",
   change_rules: "Сменить правила валидации",
+  use_filter: "Настройки",
 };

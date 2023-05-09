@@ -37,6 +37,7 @@ export default {
     portfolio: "Портфолио",
     examples_functionality: "Примеры функционала",
     dynamic_validation: "Динамическая валидация",
+    editable_dynamic_table: "Редактируемая динамическая таблица",
   },
 
   form: {
