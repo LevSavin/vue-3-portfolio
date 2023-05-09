@@ -2,30 +2,36 @@
   <div class="table-items">
     <div class="table-items__description form-page">
       <h3 class="form-page__description">
-        {{ $t("pages.validation_1") }}
+        {{ $t("pages.table_task_1") }}
+      </h3>
+      <h3 class="form-page__description">
+        {{ $t("pages.table_task_2") }}
+      </h3>
+      <h3 class="form-page__description">
+        {{ $t("pages.table_task_3") }}
       </h3>
       <p class="form-page__description">
-        {{ $t("pages.validation_2") }}
+        {{ $t("pages.table_text_2") }}
       </p>
       <p class="form-page__description">
-        {{ $t("pages.validation_3") }}
+        {{ $t("pages.table_text_3") }}
       </p>
       <p class="form-page__description">
-        {{ $t("pages.validation_4") }}
+        {{ $t("pages.table_text_4") }}
       </p>
       <p class="form-page__description">
         <a
-          href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/pages/FormValidation.vue"
+          href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/pages/EditableDynamicTable.vue"
           target="_blanc"
           >{{ $t("pages.here") }}</a
         >
         <span>&nbsp;{{ $t("pages.view_code_1") }}</span>
         <a
-          href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/composables/useDynamicForm.ts"
+          href="https://github.com/LevSavin/vue-3-portfolio/blob/master/src/components/partials/Table.vue"
           target="_blanc"
           >{{ $t("pages.here_lowercase") }}</a
         >
-        <span>{{ $t("pages.view_code_2") }}</span>
+        <span>{{ $t("pages.table_code") }}</span>
       </p>
     </div>
 

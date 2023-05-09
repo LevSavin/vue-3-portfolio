@@ -30,7 +30,7 @@ export default defineComponent({
   width: 100%;
 }
 .desk {
-  max-width: 1352px;
+  max-width: 992px;
   margin: 0 auto;
   font-size: 15px;
   line-height: 24px;

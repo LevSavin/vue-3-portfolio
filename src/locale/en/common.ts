@@ -38,8 +38,8 @@ export default {
     about: "About",
     portfolio: "Portfolio",
     examples_functionality: "Examples of functionality",
-    dynamic_validation: "Dynamic validation",
-    editable_dynamic_table: "Editable dynamic table",
+    dynamic_validation: "Work with forms",
+    editable_dynamic_table: "Work with tables",
   },
 
   form: {
