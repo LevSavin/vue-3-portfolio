@@ -10,6 +10,11 @@ const router = createRouter({
       component: () => import("@/pages/About.vue"),
     },
     {
+      path: "/gallery",
+      name: "Gallery",
+      component: () => import("@/pages/Gallery.vue"),
+    },
+    {
       path: "/dynamic-validation",
       name: "FormValidation",
       component: () => import("@/pages/FormValidation.vue"),

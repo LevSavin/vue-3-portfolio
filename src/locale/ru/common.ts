@@ -35,6 +35,7 @@ export default {
   menu: {
     main_menu: "Главное меню",
     about: "Обо мне",
+    gallery: "Галерея проектов",
     portfolio: "Портфолио",
     examples_functionality: "Примеры функционала",
     dynamic_validation: "Работа с формами",

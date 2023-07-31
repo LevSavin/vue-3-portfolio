@@ -35,30 +35,46 @@
           </router-link>
         </el-menu-item>
 
-        <el-sub-menu index="functional">
-          <template #title>
-            <el-icon><iconForm class="aside__icon"></iconForm></el-icon>
-            <span class="aside_submenu-text">
-              {{ $t("common.menu.examples_functionality") }}
-            </span>
-          </template>
-          <el-menu-item index="/editable-dynamic-table">
-            <router-link
-              class="aside__link"
-              :to="{ path: '/editable-dynamic-table' }"
-            >
-              {{ $t("common.menu.editable_dynamic_table") }}
-            </router-link>
-          </el-menu-item>
-          <el-menu-item index="/dynamic-validation">
-            <router-link
-              class="aside__link"
-              :to="{ path: '/dynamic-validation' }"
-            >
-              {{ $t("common.menu.dynamic_validation") }}
-            </router-link>
-          </el-menu-item>
-        </el-sub-menu>
+        <el-menu-item index="/gallery" class="aside__menu-item">
+          <router-link class="aside__link" :to="{ path: '/gallery' }">
+            <asideItem
+              :isCollapse="isAsideCollapsed"
+              icon="iconCardViewToggle"
+              :text="$t('common.menu.gallery')"
+            ></asideItem>
+          </router-link>
+        </el-menu-item>
+
+        <el-divider></el-divider>
+        <!-- <span class="aside_submenu-text">
+          {{ $t("common.menu.examples_functionality") }}
+        </span> -->
+
+        <el-menu-item index="/editable-dynamic-table" class="aside__menu-item">
+          <router-link
+            class="aside__link"
+            :to="{ path: '/editable-dynamic-table' }"
+          >
+            <asideItem
+              :isCollapse="isAsideCollapsed"
+              icon="iconFinalTable"
+              :text="$t('common.menu.editable_dynamic_table')"
+            ></asideItem>
+          </router-link>
+        </el-menu-item>
+
+        <el-menu-item index="/dynamic-validation" class="aside__menu-item">
+          <router-link
+            class="aside__link"
+            :to="{ path: '/dynamic-validation' }"
+          >
+            <asideItem
+              :isCollapse="isAsideCollapsed"
+              icon="iconForm"
+              :text="$t('common.menu.dynamic_validation')"
+            ></asideItem>
+          </router-link>
+        </el-menu-item>
       </el-menu>
 
       <div v-if="!isAsideCollapsed">

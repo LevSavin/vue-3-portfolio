@@ -36,6 +36,7 @@ export default {
   menu: {
     main_menu: "Main menu",
     about: "About",
+    gallery: "Project Gallery",
     portfolio: "Portfolio",
     examples_functionality: "Examples of functionality",
     dynamic_validation: "Work with forms",

@@ -17,6 +17,8 @@ import { defineComponent } from "vue";
 import iconPass from "@/components/icons/iconPass.vue";
 import iconBurger from "@/components/icons/iconBurger.vue";
 import iconForm from "@/components/icons/iconForm.vue";
+import iconCardViewToggle from "@/components/icons/iconCardViewToggle.vue";
+import iconFinalTable from "@/components/icons/iconFinalTable.vue";
 
 export default defineComponent({
   name: "AsideItem",
@@ -24,6 +26,8 @@ export default defineComponent({
     iconPass,
     iconBurger,
     iconForm,
+    iconCardViewToggle,
+    iconFinalTable,
   },
   props: {
     isCollapse: {
