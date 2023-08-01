@@ -6,7 +6,7 @@
       :key="image + index"
     >
       <img
-        :src="`/images/gallery/${image}`"
+        :src="`images/gallery/${image}`"
         class="masonry__image"
         loading="lazy"
         alt="demo image"
