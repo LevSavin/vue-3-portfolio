@@ -120,7 +120,6 @@ import { defineComponent, computed, watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import iconBurger from "@/components/icons/iconBurger.vue";
-import iconForm from "@/components/icons/iconForm.vue";
 import iconPhone from "@/components/icons/iconPhone.vue";
 import iconMail from "@/components/icons/iconMail.vue";
 import iconTelegram from "@/components/icons/iconTelegram.vue";
@@ -131,7 +130,6 @@ export default defineComponent({
   name: "AsideComponent",
   components: {
     iconBurger,
-    iconForm,
     iconPhone,
     iconMail,
     iconTelegram,
@@ -209,10 +207,11 @@ export default defineComponent({
     }
   }
   &__title {
+    margin-left: 20px;
     text-transform: uppercase;
     font-size: 12px;
     line-height: 20px;
-    padding-left: 28px;
+    margin-bottom: 0px;
     padding-right: 20px;
     height: 50px;
     display: flex;
@@ -225,7 +224,7 @@ export default defineComponent({
   }
   &__menu {
     border: none;
-    margin-left: 24px;
+    margin-left: 0px;
   }
   &__block {
     margin-left: 20px;
@@ -234,7 +233,6 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 20px;
   }
   &_submenu-text {
     padding-right: 42px;
@@ -246,7 +244,6 @@ export default defineComponent({
     justify-content: center;
     cursor: pointer;
     align-items: center;
-    margin-left: 5px;
     &:hover {
       background-color: var(--el-menu-hover-bg-color);
     }

@@ -1,12 +1,17 @@
 <template>
   <div>
     <div class="aside__link-wrap" v-if="!isCollapse">
-      <component class="aside__icon link" :is="icon"></component>
+      <component
+        class="aside__icon link"
+        :is="icon"
+        :width="18"
+        :height="18"
+      ></component>
       <span>{{ text }}</span>
     </div>
     <el-tooltip v-else placement="right" effect="dark" :content="text">
       <div class="aside__icon-mobile link">
-        <component :is="icon"></component>
+        <component :is="icon" :width="18" :height="18"></component>
       </div>
     </el-tooltip>
   </div>
