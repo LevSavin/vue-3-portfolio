@@ -45,10 +45,10 @@
           </router-link>
         </el-menu-item>
 
-        <el-divider></el-divider>
-        <!-- <span class="aside_submenu-text">
+        <el-divider class="aside__divider"></el-divider>
+        <div v-if="!isAsideCollapsed" class="aside__title">
           {{ $t("common.menu.examples_functionality") }}
-        </span> -->
+        </div>
 
         <el-menu-item index="/editable-dynamic-table" class="aside__menu-item">
           <router-link
@@ -209,8 +209,15 @@ export default defineComponent({
     }
   }
   &__title {
-    line-height: 16px;
-    height: 16px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 20px;
+    padding-left: 28px;
+    padding-right: 20px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: $gray;
   }
   &__icon {
     margin-right: 4px;
@@ -246,6 +253,10 @@ export default defineComponent({
   }
   &__additional-text {
     margin-left: 8px;
+  }
+  &__divider {
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
 }
 </style>
